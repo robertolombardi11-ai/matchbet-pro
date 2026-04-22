@@ -1,0 +1,13 @@
+{
+  "name": "matchbet-pro",
+  "version": "1.0.0",
+  "description": "MatchBet Pro - Calcolatore Betting Avanzato",
+  "scripts": {
+    "build": "echo 'Static app - no build needed'"
+  },
+  "dependencies": {
+    "@capacitor/android": "^5.7.0",
+    "@capacitor/core": "^5.7.0",
+    "@capacitor/cli": "^5.7.0"
+  }
+}

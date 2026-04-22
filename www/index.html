@@ -1,0 +1,2892 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, interactive-widget=resizes-content">
+<title>MatchBet Pro Italy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#090b10;--s1:#111318;--s2:#181c26;--s3:#1f2435;--s4:#252d40;
+  --brd:rgba(255,255,255,0.06);--brd2:rgba(255,255,255,0.11);--brd3:rgba(255,255,255,0.18);
+  --acc:#4f6ef7;--acc2:#7b94ff;--accG:rgba(79,110,247,0.18);--accGlow:rgba(79,110,247,0.08);
+  --grn:#22d3a0;--grnD:#16a57e;--grnG:rgba(34,211,160,0.12);
+  --ylw:#f5c542;--ylwG:rgba(245,197,66,0.12);
+  --red:#f05454;--redG:rgba(240,84,84,0.1);
+  --pur:#b06ef3;--purG:rgba(176,110,243,0.12);
+  --txt:#e8ecf7;--txt2:#7b85a3;--txt3:#3d4560;
+  --r:16px;--rsm:10px;--rxs:7px;
+  --mono:'DM Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+
+/* ── HEADER ── */
+.hdr{background:linear-gradient(160deg,#0d0f1c 0%,#0a1020 50%,#080d18 100%);padding:16px 16px 0;position:sticky;top:0;z-index:99;border-bottom:1px solid var(--brd);}
+.hdr-top{display:flex;align-items:center;gap:11px;margin-bottom:13px;}
+.logo{width:36px;height:36px;background:linear-gradient(135deg,var(--acc),var(--grn));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;box-shadow:0 0 20px var(--accG);}
+.app-name{font-size:16px;font-weight:800;letter-spacing:-.5px;}
+.app-name span{color:var(--acc2);}
+.app-sub{font-size:10px;color:var(--txt2);margin-top:1px;letter-spacing:.3px;}
+.nav{display:flex;gap:0;overflow-x:auto;scrollbar-width:none;border-top:1px solid var(--brd);}
+.nav::-webkit-scrollbar{display:none;}
+.ntab{flex-shrink:0;padding:11px 14px;font-size:11.5px;font-weight:700;color:var(--txt2);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;letter-spacing:.2px;}
+.ntab.on{color:var(--acc2);border-bottom-color:var(--acc2);}
+
+/* ── LAYOUT ── */
+.main{padding:16px;max-width:460px;margin:0 auto;padding-bottom:env(keyboard-inset-height,200px);}
+/* fallback per browser senza keyboard-inset */
+@supports not (padding-bottom: env(keyboard-inset-height)){
+  .main{padding-bottom:260px;}
+}
+.sec{display:none;}
+.sec.on{display:block;animation:fi .18s ease;}
+@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── CARDS ── */
+.card{background:var(--s1);border:1px solid var(--brd);border-radius:var(--r);padding:16px;margin-bottom:10px;}
+.card-accent{border-color:rgba(79,110,247,.22);background:linear-gradient(160deg,rgba(79,110,247,.04),var(--s1));}
+.card-green{border-color:rgba(34,211,160,.2);background:linear-gradient(160deg,rgba(34,211,160,.04),var(--s1));}
+.card-yellow{border-color:rgba(245,197,66,.2);background:linear-gradient(160deg,rgba(245,197,66,.04),var(--s1));}
+.ctitle{font-size:10px;font-weight:700;color:var(--txt2);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.cdot{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+
+/* ── HERO ── */
+.hero{background:linear-gradient(135deg,rgba(79,110,247,.08),rgba(34,211,160,.05));border:1px solid rgba(79,110,247,.14);border-radius:var(--r);padding:14px 16px;margin-bottom:12px;display:flex;align-items:center;gap:12px;}
+.hico{font-size:22px;flex-shrink:0;}
+.ht{font-size:14px;font-weight:800;}
+.hs{font-size:11px;color:var(--txt2);margin-top:2px;line-height:1.4;}
+
+/* ── FORM ── */
+.field{margin-bottom:10px;}
+.field:last-child{margin-bottom:0;}
+.lbl{font-size:11px;font-weight:600;color:var(--txt2);margin-bottom:5px;display:flex;align-items:center;gap:5px;line-height:1.3;}
+.req{color:var(--acc2);font-size:10px;font-weight:500;margin-left:auto;}
+.iw{position:relative;}
+.pfx{position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:13px;color:var(--txt2);font-weight:600;font-family:var(--mono);pointer-events:none;z-index:1;}
+.sfx{position:absolute;right:11px;top:50%;transform:translateY(-50%);font-size:12px;color:var(--txt2);pointer-events:none;z-index:1;}
+input[type=number],select{
+  width:100%;background:var(--s2);border:1.5px solid var(--brd2);border-radius:var(--rsm);
+  color:var(--txt);font-family:var(--mono);font-size:15px;font-weight:500;
+  padding:10px 12px;outline:none;transition:border-color .15s,box-shadow .15s;
+  -webkit-appearance:none;appearance:none;
+}
+input[type=number].px{padding-left:26px;}
+input[type=number].sx{padding-right:28px;}
+input[type=number]:focus,select:focus{border-color:var(--acc);box-shadow:0 0 0 3px var(--accG);}
+input[type=number].ok{border-color:rgba(34,211,160,.4);}
+input[type=number].warn{border-color:rgba(245,197,66,.4);}
+input[type=number].bad{border-color:rgba(240,84,84,.35);}
+select{cursor:pointer;padding-right:30px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%237b85a3' d='M5 7L0.5 2.5h9z'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 11px center;}
+select option{background:#181c26;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;}
+
+/* ── TOOLTIP ── */
+.tip{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:50%;background:var(--s3);color:var(--txt3);font-size:9px;cursor:pointer;flex-shrink:0;position:relative;border:1px solid var(--brd2);font-family:'DM Sans',sans-serif;}
+.tip-box{display:none;position:absolute;bottom:calc(100%+8px);left:50%;transform:translateX(-50%);background:var(--s3);border:1px solid var(--brd3);color:var(--txt);font-size:11px;padding:10px 12px;border-radius:10px;white-space:normal;max-width:220px;z-index:200;line-height:1.55;font-family:'DM Sans',sans-serif;font-weight:400;box-shadow:0 8px 24px rgba(0,0,0,.5);}
+.tip.open .tip-box{display:block;}
+
+/* ── TOGGLE TAB ── */
+.cov-tabs{display:flex;gap:0;margin-bottom:12px;background:var(--s2);border:1.5px solid var(--brd2);border-radius:var(--rsm);padding:3px;}
+.ctab{flex:1;padding:9px 6px;border-radius:7px;text-align:center;font-size:12px;font-weight:700;color:var(--txt2);cursor:pointer;transition:all .2s;user-select:none;}
+.ctab.on{background:var(--acc);color:#fff;box-shadow:0 2px 10px var(--accG);}
+
+/* ── FREEBET SWITCH ── */
+.fb-row{display:flex;align-items:center;justify-content:space-between;background:var(--s2);border:1.5px solid var(--brd2);border-radius:var(--rsm);padding:11px 14px;margin-bottom:10px;transition:all .2s;}
+.fb-row.on{background:rgba(79,110,247,.07);border-color:rgba(79,110,247,.3);}
+.fb-lbl{font-size:12.5px;font-weight:700;}
+.fb-sub{font-size:10px;color:var(--txt2);margin-top:1px;}
+.sw{position:relative;width:42px;height:23px;flex-shrink:0;}
+.sw input{opacity:0;width:0;height:0;}
+.sw-track{position:absolute;cursor:pointer;inset:0;background:var(--s4);border-radius:23px;transition:.25s;border:1px solid var(--brd2);}
+.sw-track:before{position:absolute;content:"";height:17px;width:17px;left:2px;bottom:2px;background:var(--txt2);border-radius:50%;transition:.25s;}
+.sw input:checked+.sw-track{background:var(--acc);border-color:transparent;}
+.sw input:checked+.sw-track:before{transform:translateX(19px);background:#fff;}
+
+/* ── RESULTS ── */
+.rcard{background:linear-gradient(160deg,#0c1020,#111828);border:1px solid rgba(79,110,247,.22);border-radius:var(--r);padding:16px;margin-bottom:10px;position:relative;overflow:hidden;}
+.rcard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--acc),var(--grn));opacity:.6;}
+.rtitle{font-size:10px;font-weight:700;color:var(--acc2);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;}
+.rrow{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--brd);}
+.rrow:last-child{border-bottom:none;padding-bottom:0;}
+.rlbl{font-size:11.5px;color:var(--txt2);font-weight:500;flex:1;padding-right:10px;line-height:1.35;}
+.rv{font-family:var(--mono);font-size:14px;font-weight:600;flex-shrink:0;transition:color .2s;}
+.rv.big{font-size:20px;font-weight:700;}
+.rv.xl{font-size:26px;font-weight:800;}
+.cg{color:var(--grn)!important;}
+.cy{color:var(--ylw)!important;}
+.cr{color:var(--red)!important;}
+.cp{color:var(--acc2)!important;}
+.cw{color:var(--txt)!important;}
+.cm{color:var(--pur)!important;}
+
+/* ── SCENARIO BOXES ── */
+.sc2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0;}
+.sc-box{border-radius:var(--rsm);padding:12px 10px;text-align:center;}
+.sc-g{background:var(--grnG);border:1px solid rgba(34,211,160,.2);}
+.sc-y{background:var(--ylwG);border:1px solid rgba(245,197,66,.18);}
+.sc-r{background:var(--redG);border:1px solid rgba(240,84,84,.18);}
+.sc-b{background:var(--accGlow);border:1px solid rgba(79,110,247,.2);}
+.sc-lbl{font-size:10px;color:var(--txt2);margin-bottom:5px;line-height:1.4;}
+.sc-val{font-family:var(--mono);font-size:17px;font-weight:700;}
+
+/* ── RATING BAR ── */
+.rating-wrap{background:var(--s3);border-radius:var(--rsm);padding:12px 14px;margin-top:10px;}
+.rating-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.rating-lbl{font-size:10px;color:var(--txt2);text-transform:uppercase;letter-spacing:.8px;font-weight:700;}
+.rating-num{font-family:var(--mono);font-size:22px;font-weight:800;}
+.rating-bar-bg{height:6px;background:var(--s4);border-radius:6px;overflow:hidden;}
+.rating-bar-fill{height:100%;border-radius:6px;transition:width .4s ease,background .4s;}
+
+/* ── INFO BOXES ── */
+.ib{border-radius:var(--rsm);padding:10px 13px;margin-bottom:10px;}
+.ib p{font-size:11.5px;line-height:1.6;}
+.ib.blue{background:var(--accGlow);border:1px solid rgba(79,110,247,.18);}
+.ib.blue p{color:#8ba8ff;}
+.ib.blue p strong{color:var(--acc2);}
+.ib.green{background:var(--grnG);border:1px solid rgba(34,211,160,.18);}
+.ib.green p{color:#5de8c0;}
+.ib.green p strong{color:var(--grn);}
+.ib.yellow{background:var(--ylwG);border:1px solid rgba(245,197,66,.18);}
+.ib.yellow p{color:#c9a84c;}
+.ib.yellow p strong{color:var(--ylw);}
+.ib.red{background:var(--redG);border:1px solid rgba(240,84,84,.16);}
+.ib.red p{color:#f08080;}
+
+/* ── BUTTONS ── */
+.btn{padding:11px 14px;border-radius:var(--rsm);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;border:none;transition:all .15s;width:100%;letter-spacing:.1px;}
+.btn-primary{background:linear-gradient(135deg,var(--acc),#6682ff);color:#fff;box-shadow:0 3px 14px var(--accG);}
+.btn-secondary{background:var(--s3);color:var(--txt2);border:1px solid var(--brd2);}
+.btn-ghost{background:transparent;color:var(--acc2);border:1px solid rgba(79,110,247,.3);font-size:12px;padding:8px;}
+.btn:active{transform:scale(.98);}
+.btn-row{display:flex;gap:8px;margin-top:6px;}
+.copy-btn{background:rgba(79,110,247,.1);border:1px solid rgba(79,110,247,.2);color:var(--acc2);font-size:11px;font-weight:700;cursor:pointer;padding:4px 10px;border-radius:6px;font-family:'DM Sans',sans-serif;transition:all .2s;white-space:nowrap;}
+.copy-btn.ok{background:var(--grnG);border-color:rgba(34,211,160,.3);color:var(--grn);}
+
+/* ── ESEMPIO BTN ── */
+.ex-btn{font-size:10px;font-weight:700;color:var(--acc2);background:var(--accGlow);border:1px solid rgba(79,110,247,.2);border-radius:6px;padding:3px 8px;cursor:pointer;white-space:nowrap;font-family:'DM Sans',sans-serif;transition:all .2s;margin-left:auto;}
+.ex-btn:hover{background:rgba(79,110,247,.15);}
+
+/* ── DIVIDER ── */
+.dv{height:1px;background:var(--brd);margin:8px 0;}
+
+/* ── BADGE ── */
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:18px;font-size:10px;font-weight:700;letter-spacing:.3px;}
+.badge-acc{background:var(--accGlow);color:var(--acc2);border:1px solid rgba(79,110,247,.2);}
+.badge-grn{background:var(--grnG);color:var(--grn);border:1px solid rgba(34,211,160,.2);}
+.badge-ylw{background:var(--ylwG);color:var(--ylw);border:1px solid rgba(245,197,66,.2);}
+.badge-red{background:var(--redG);color:var(--red);border:1px solid rgba(240,84,84,.2);}
+
+/* ── EVENT CARDS (Multipla) ── */
+.evc{background:var(--s2);border:1px solid var(--brd2);border-radius:var(--rsm);padding:13px;margin-bottom:9px;}
+.evh{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px;}
+.evn{background:var(--acc);color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;}
+.ev-del{background:var(--redG);border:1px solid rgba(240,84,84,.2);color:var(--red);width:24px;height:24px;border-radius:6px;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.add-ev{width:100%;padding:10px;background:transparent;border:1.5px dashed var(--brd2);border-radius:var(--rsm);color:var(--txt2);font-size:12.5px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:10px;transition:all .2s;font-family:'DM Sans',sans-serif;}
+.add-ev:hover{border-color:var(--acc);color:var(--acc2);}
+
+/* ── SLOT CARDS ── */
+.slot-card{display:flex;align-items:flex-start;gap:10px;padding:10px;background:var(--s2);border:1px solid var(--brd);border-radius:var(--rsm);margin-bottom:6px;}
+.slot-rank{width:24px;height:24px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;}
+.rank-1{background:rgba(245,197,66,.15);color:var(--ylw);}
+.rank-2{background:var(--accGlow);color:var(--acc2);}
+.rank-3{background:var(--grnG);color:var(--grn);}
+.slot-name{font-size:12.5px;font-weight:700;margin-bottom:2px;}
+.slot-prov{font-size:10.5px;color:var(--txt2);margin-bottom:4px;}
+.tag-row{display:flex;gap:4px;flex-wrap:wrap;}
+.tag{padding:2px 7px;border-radius:8px;font-size:10px;font-weight:700;}
+.tag-g{background:var(--grnG);color:var(--grn);}
+.tag-y{background:var(--ylwG);color:var(--ylw);}
+.tag-b{background:var(--accGlow);color:var(--acc2);}
+
+/* ── PROGRESS ── */
+.pgw{background:var(--s4);border-radius:5px;height:6px;overflow:hidden;}
+.pgf{height:100%;border-radius:5px;background:linear-gradient(90deg,var(--acc),var(--grn));transition:width .4s ease;}
+
+/* ── CONTRIBUZIONE INFO ── */
+.cinfo{background:var(--s3);border-radius:var(--rsm);padding:9px 12px;margin-top:7px;font-size:11px;color:var(--txt2);line-height:1.55;}
+.cinfo strong{color:var(--ylw);}
+
+/* ── FASE LIVE ── */
+.fase-live{border-radius:var(--rsm);padding:10px 12px;margin-top:8px;font-size:12px;font-weight:700;text-align:center;letter-spacing:.1px;}
+.f-target{background:var(--ylwG);border:1px solid rgba(245,197,66,.25);color:var(--ylw);}
+.f-roll{background:var(--grnG);border:1px solid rgba(34,211,160,.25);color:var(--grn);}
+.f-sw{background:var(--redG);border:1px solid rgba(240,84,84,.25);color:var(--red);}
+
+/* ── STEP LABELS ── */
+.step-lbl{font-size:10px;color:var(--txt2);text-transform:uppercase;letter-spacing:.8px;font-weight:700;margin:12px 0 6px;display:flex;align-items:center;gap:6px;}
+.step-lbl::after{content:'';flex:1;height:1px;background:var(--brd);}
+.step-n{background:var(--acc);color:#fff;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;flex-shrink:0;}
+
+/* ── COPERTURA COMPATTA ── */
+.pb-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:9px;}
+.pb-row2{display:flex;gap:8px;align-items:stretch;margin-bottom:0;}
+.pb-field{display:flex;flex-direction:column;gap:4px;}
+.pb-lbl{font-size:10px;font-weight:700;color:var(--txt2);text-transform:uppercase;letter-spacing:.7px;}
+.pb-inp{width:100%;background:var(--s2);border:1.5px solid var(--brd2);border-radius:var(--rsm);color:var(--txt);font-family:var(--mono);font-size:14px;font-weight:600;padding:9px 10px;outline:none;transition:border-color .15s,box-shadow .15s;-webkit-appearance:none;appearance:none;}
+.pb-inp.px{padding-left:23px;}
+.pb-inp.sx{padding-right:26px;}
+.pb-inp:focus{border-color:var(--acc);box-shadow:0 0 0 3px var(--accG);}
+.pb-toggle-box{display:flex;align-items:center;gap:9px;background:var(--s2);border:1.5px solid var(--brd2);border-radius:var(--rsm);padding:8px 11px;cursor:pointer;transition:all .2s;user-select:none;min-width:140px;}
+.pb-toggle-box.on{background:rgba(79,110,247,.08);border-color:rgba(79,110,247,.3);}
+/* Quota rows */
+.pb-quot-row{display:flex;align-items:center;gap:10px;}
+.pb-quot-bk{display:flex;align-items:center;gap:7px;width:100px;flex-shrink:0;}
+.pb-bk-ico{width:26px;height:26px;border-radius:7px;background:rgba(34,211,160,.12);color:var(--grn);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+.pb-bk-lbl{font-size:12px;font-weight:700;color:var(--txt);}
+.pb-q-inp{width:90px;background:var(--s2);border:1.5px solid var(--brd2);border-radius:var(--rsm);color:var(--txt);font-family:var(--mono);font-size:15px;font-weight:700;padding:9px 10px;outline:none;transition:border-color .15s,box-shadow .15s;-webkit-appearance:none;appearance:none;text-align:center;}
+.pb-q-inp:focus{border-color:var(--acc);box-shadow:0 0 0 3px var(--accG);}
+.pb-quot-desc{flex:1;font-size:11px;color:var(--txt2);line-height:1.4;font-family:var(--mono);}
+.pb-quot-desc strong{color:var(--acc2);}
+.pb-quot-desc .liab-hint{font-size:10px;color:var(--ylw);display:block;margin-top:1px;}
+/* Info panels */
+.sec-info{margin-top:14px;border-top:1px solid var(--brd);padding-top:12px;}
+.sec-info-btn{display:flex;align-items:center;gap:8px;background:none;border:none;color:var(--txt2);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;padding:0;width:100%;}
+.sec-info-btn:hover{color:var(--txt);}
+.sec-info-ico{width:20px;height:20px;border-radius:50%;background:var(--s2);border:1px solid var(--brd2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--acc2);flex-shrink:0;}
+.sec-info-body{display:none;margin-top:10px;background:var(--s2);border:1px solid var(--brd2);border-radius:var(--rsm);padding:12px 14px;}
+.sec-info-body.open{display:block;}
+.sec-info-body p{font-size:12px;color:var(--txt2);line-height:1.7;margin:0 0 6px;}
+.sec-info-body p:last-child{margin:0;}
+.sec-info-body strong{color:var(--txt);}
+/* Risultati importi con copia */
+.res-import-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--brd);}
+.res-import-lbl{font-size:11px;color:var(--txt2);margin-bottom:2px;}
+.res-import-val{font-family:var(--mono);font-size:20px;font-weight:800;color:var(--txt);}
+.res-import-val.cy{color:var(--ylw);}
+.mini-copy{background:var(--s3);border:1px solid var(--brd2);color:var(--txt2);font-size:14px;width:32px;height:32px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s;font-family:'DM Sans',sans-serif;}
+.mini-copy:active{background:var(--accGlow);color:var(--acc2);transform:scale(.93);}
+.mini-copy.ok{background:var(--grnG);color:var(--grn);border-color:rgba(34,211,160,.3);}
+
+/* ── SLOT DASHBOARD ── */
+.sl-dash-card{background:linear-gradient(160deg,#0c1222,#111828);border:1px solid rgba(79,110,247,.25);border-radius:var(--r);padding:16px;margin-bottom:10px;position:relative;overflow:hidden;}
+.sl-dash-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--ylw),var(--grn),var(--acc));opacity:.7;}
+.sl-dash-top{display:flex;gap:12px;align-items:stretch;margin-bottom:12px;}
+.sl-dash-main{flex:1;}
+.sl-dash-lbl{font-size:10px;font-weight:800;color:var(--ylw);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;}
+.sl-dash-big{font-family:var(--mono);font-size:38px;font-weight:800;color:var(--grn);line-height:1;margin-bottom:3px;}
+.sl-dash-sub{font-size:11px;color:var(--txt2);}
+.sl-dash-right{display:flex;flex-direction:column;justify-content:center;}
+.sl-dash-sm-box{border-radius:10px;padding:10px 12px;text-align:center;min-width:100px;}
+.sl-box-red{background:var(--redG);border:1px solid rgba(240,84,84,.25);}
+.sl-dash-sm-lbl{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;color:var(--red);margin-bottom:3px;}
+.sl-dash-sm-val{font-family:var(--mono);font-size:18px;font-weight:800;color:var(--red);}
+.sl-dash-sm-sub{font-size:9px;color:var(--txt2);margin-top:2px;}
+/* Spin boxes */
+.sl-dash-spins{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
+.sl-spin-box{border-radius:10px;padding:10px 12px;}
+.sl-spin-t{background:var(--ylwG);border:1px solid rgba(245,197,66,.25);}
+.sl-spin-r{background:var(--grnG);border:1px solid rgba(34,211,160,.22);}
+.sl-spin-phase{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;margin-bottom:3px;}
+.sl-spin-t .sl-spin-phase{color:var(--ylw);}
+.sl-spin-r .sl-spin-phase{color:var(--grn);}
+.sl-spin-lbl{font-size:10px;color:var(--txt2);margin-bottom:2px;}
+.sl-spin-val{font-family:var(--mono);font-size:15px;font-weight:800;margin-bottom:2px;}
+.sl-spin-t .sl-spin-val{color:var(--ylw);}
+.sl-spin-r .sl-spin-val{color:var(--grn);}
+.sl-spin-sub{font-size:9px;color:var(--txt2);line-height:1.4;}
+/* Bottom stats */
+.sl-dash-bottom{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;}
+.sl-dash-stat{background:var(--s3);border-radius:8px;padding:8px 10px;text-align:center;}
+.sl-stat-lbl{font-size:9px;color:var(--txt2);text-transform:uppercase;letter-spacing:.5px;font-weight:700;margin-bottom:3px;}
+.sl-stat-val{font-family:var(--mono);font-size:13px;font-weight:800;}
+
+/* ── TWOBOX ── */
+.twobox{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0;}
+.tbi{padding:12px 10px;border-radius:var(--rsm);text-align:center;}
+.tbi-g{background:var(--grnG);border:1px solid rgba(34,211,160,.2);}
+.tbi-y{background:var(--ylwG);border:1px solid rgba(245,197,66,.18);}
+.tbi-lbl{font-size:9px;color:var(--txt2);margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px;font-weight:700;}
+.tbi-sub{font-size:9px;color:var(--txt3);margin-top:3px;}
+.sb-dropzone{background:var(--s2);border:2px dashed var(--brd2);border-radius:var(--r);padding:28px 16px;text-align:center;cursor:pointer;user-select:none;transition:border-color .2s;}
+.sb-dropzone:active{border-color:var(--acc);background:var(--accGlow);}
+/* Fan Sport Pro */
+.fsp-hero{background:linear-gradient(135deg,#0a1428,#0e1c38);border:1px solid rgba(79,110,247,.25);border-radius:var(--r);padding:16px;margin-bottom:10px;position:relative;overflow:hidden;}
+.fsp-hero::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--acc),var(--grn),var(--ylw));}
+.fsp-kpi{border-radius:10px;padding:9px 12px;text-align:center;min-width:88px;}
+.fsp-kpi-g{background:var(--grnG);border:1px solid rgba(34,211,160,.22);}
+.fsp-kpi-y{background:var(--ylwG);border:1px solid rgba(245,197,66,.18);}
+.fsp-kpi-lbl{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;margin-bottom:3px;}
+.fsp-kpi-g .fsp-kpi-lbl{color:var(--grn);}
+.fsp-kpi-y .fsp-kpi-lbl{color:var(--ylw);}
+.fsp-kpi-val{font-family:var(--mono);font-size:15px;font-weight:800;}
+.fsp-kpi-g .fsp-kpi-val{color:var(--grn);}
+.fsp-kpi-y .fsp-kpi-val{color:var(--ylw);}
+.fsp-ev{background:var(--s2);border:1px solid var(--brd2);border-radius:var(--rsm);margin-bottom:8px;overflow:hidden;}
+.fsp-ev-hd{display:flex;align-items:center;justify-content:space-between;padding:9px 12px 8px;border-bottom:1px solid var(--brd);}
+.fsp-ev-bd{padding:12px;display:flex;align-items:center;gap:10px;}
+.fsp-col{display:flex;flex-direction:column;align-items:center;gap:4px;}
+.fsp-ico{width:26px;height:20px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;}
+.fsp-ico-bk{background:rgba(34,211,160,.12);color:var(--grn);}
+.fsp-ico-ex{background:rgba(176,110,243,.12);color:var(--pur);}
+.fsp-col input{width:70px;background:var(--s1);border:1.5px solid var(--brd2);border-radius:var(--rsm);color:var(--txt);font-family:var(--mono);font-size:17px;font-weight:700;padding:8px 4px;text-align:center;outline:none;-webkit-appearance:none;}
+.fsp-col input:focus{border-color:var(--acc);}
+.fsp-sep{font-size:11px;color:var(--txt3);padding:0 2px;flex-shrink:0;}
+.fsp-res{flex:1;text-align:right;}
+.fsp-res-lbl{font-size:9px;color:var(--txt2);text-transform:uppercase;letter-spacing:.5px;font-weight:700;margin-bottom:1px;}
+.fsp-res-val{font-family:var(--mono);font-size:19px;font-weight:800;}
+.fsp-res-sub{font-family:var(--mono);font-size:11px;color:var(--ylw);}
+#fsp_slider::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;border-radius:50%;background:var(--s1);border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.5);cursor:grab;}
+#fsp_slider::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:var(--s1);border:3px solid #fff;cursor:grab;}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-top">
+    <div class="logo">📈</div>
+    <div>
+      <div class="app-name">MatchBet <span>Pro</span></div>
+      <div class="app-sub">Calcolatore Avanzato · Italy</div>
+    </div>
+  </div>
+  <div class="nav">
+    <div class="ntab on" id="t-pb" onclick="go('pb')">🎯 Copertura</div>
+    <div class="ntab" id="t-mp" onclick="go('mp')">🔗 Multipla</div>
+    <div class="ntab" id="t-fs" onclick="go('fs')">⚽ Fan Sport</div>
+    <div class="ntab" id="t-sl" onclick="go('sl')">🎰 Fan Slot</div>
+    <div class="ntab" id="t-rb" onclick="go('rb')">🎰 Casino</div>
+    <div class="ntab" id="t-sb" onclick="go('sb')">🔍 Surebet</div>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- ══════════════════════════════════════
+     COPERTURA
+══════════════════════════════════════ -->
+<div class="sec on" id="s-pb">
+
+  <!-- TAB MODALITÀ -->
+  <div class="cov-tabs">
+    <div class="ctab on" id="ctab-pb" onclick="setCovMode('pb')">⚖️ Punta / Banca</div>
+    <div class="ctab" id="ctab-pp" onclick="setCovMode('pp')">🔄 Punta / Punta</div>
+  </div>
+
+  <!-- CARD INPUT COMPATTA -->
+  <div class="card" id="pb-input-card">
+
+    <!-- RIGA 1: Puntata + Rimborso + Commissione -->
+    <div class="pb-row3">
+      <div class="pb-field">
+        <div class="pb-lbl">Puntata</div>
+        <div class="iw"><span class="pfx">€</span><input type="number" id="pb_s" class="px pb-inp" placeholder="20" step="0.01" min="0" oninput="calc()"></div>
+      </div>
+      <div class="pb-field" id="rimb-field">
+        <div class="pb-lbl">Rimborso</div>
+        <div class="iw"><span class="pfx">€</span><input type="number" id="pb_rimb" class="px pb-inp" placeholder="0" step="0.01" min="0" value="0" oninput="calc()"></div>
+      </div>
+      <div class="pb-field" id="comm-field">
+        <div class="pb-lbl">Comm. %</div>
+        <div class="iw"><input type="number" id="pb_c" class="sx pb-inp" placeholder="4.5" step="0.5" min="0" max="25" value="4.5" oninput="calc()"><span class="sfx">%</span></div>
+      </div>
+    </div>
+
+    <!-- RIGA 2: Toggle Freebet + Arrotonda -->
+    <div class="pb-row2" id="pb-toggles-row">
+      <div class="pb-toggle-box" id="fb-row" onclick="toggleFB()">
+        <label class="sw" style="pointer-events:none">
+          <input type="checkbox" id="pb_fb">
+          <span class="sw-track"></span>
+        </label>
+        <div>
+          <div class="fb-lbl" style="font-size:12px">Freebet SNR</div>
+          <div class="fb-sub">stake non restituito</div>
+        </div>
+      </div>
+      <div class="pb-field" style="flex:1">
+        <div class="pb-lbl">Arrotonda a</div>
+        <select id="pb_arr" onchange="calc()">
+          <option value="0.01">€ 0.01</option>
+          <option value="0.05">€ 0.05</option>
+          <option value="0.10">€ 0.10</option>
+          <option value="0.50">€ 0.50</option>
+          <option value="1.00">€ 1.00</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="dv" style="margin:12px 0 10px"></div>
+
+    <!-- QUOTE -->
+    <div id="pb-quotes-pb">
+      <!-- Punta/Banca: due righe quote -->
+      <div class="pb-quot-row">
+        <div class="pb-quot-bk">
+          <span class="pb-bk-ico">📗</span>
+          <span class="pb-bk-lbl" id="bk1-lbl">Bookmaker</span>
+        </div>
+        <div class="iw" style="width:90px;flex-shrink:0">
+          <input type="number" id="pb_q1" class="pb-q-inp" placeholder="2.60" step="0.01" min="1.01" oninput="calc()">
+        </div>
+        <div class="pb-quot-desc" id="pb_q1_desc">Punta —</div>
+      </div>
+      <div class="pb-quot-row" style="margin-top:8px">
+        <div class="pb-quot-bk">
+          <span class="pb-bk-ico" style="background:rgba(176,110,243,.15);color:var(--pur)">⚡</span>
+          <span class="pb-bk-lbl" id="bk2-lbl">Exchange</span>
+        </div>
+        <div class="iw" style="width:90px;flex-shrink:0">
+          <input type="number" id="pb_q2" class="pb-q-inp" placeholder="2.68" step="0.01" min="1.01" oninput="calc()">
+        </div>
+        <div class="pb-quot-desc" id="pb_q2_desc">Banca —</div>
+      </div>
+    </div>
+
+    <!-- Punta/Punta: opzioni extra (rimborso + arrotonda) -->
+    <div id="pb-pp-extras" style="display:none;margin-bottom:9px">
+      <div class="pb-row3" style="grid-template-columns:1fr 1fr 1fr">
+        <div class="pb-field">
+          <div class="pb-lbl">Rimborso</div>
+          <div class="iw"><span class="pfx">€</span><input type="number" id="pp_rimb" class="px pb-inp" placeholder="0" step="0.01" min="0" value="0" oninput="calc()"></div>
+        </div>
+        <div class="pb-field">
+          <div class="pb-lbl">Comm. BK2 %</div>
+          <div class="iw"><input type="number" id="pp_c" class="sx pb-inp" placeholder="0" step="0.5" min="0" max="25" value="0" oninput="calc()"><span class="sfx">%</span></div>
+        </div>
+        <div class="pb-field">
+          <div class="pb-lbl">Arrotonda a</div>
+          <select id="pp_arr" onchange="calc()">
+            <option value="0.01">€ 0.01</option>
+            <option value="0.05">€ 0.05</option>
+            <option value="0.10">€ 0.10</option>
+            <option value="0.50">€ 0.50</option>
+            <option value="1.00">€ 1.00</option>
+          </select>
+        </div>
+      </div>
+      <!-- toggle freebet PP -->
+      <div class="pb-toggle-box" id="fb-row-pp" onclick="toggleFBpp()" style="margin-top:8px">
+        <label class="sw" style="pointer-events:none">
+          <input type="checkbox" id="pp_fb">
+          <span class="sw-track"></span>
+        </label>
+        <div>
+          <div class="fb-lbl" style="font-size:12px">Freebet BK1</div>
+          <div class="fb-sub">stake non restituito a BK1</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Punta/Punta: due righe BK1/BK2 -->
+    <div id="pb-quotes-pp" style="display:none">
+      <div class="pb-quot-row">
+        <div class="pb-quot-bk">
+          <span class="pb-bk-ico">📗</span>
+          <span class="pb-bk-lbl">BK1</span>
+        </div>
+        <div class="iw" style="width:90px;flex-shrink:0">
+          <input type="number" id="pp_q1" class="pb-q-inp" placeholder="2.10" step="0.01" min="1.01" oninput="calc()">
+        </div>
+        <div class="pb-quot-desc" id="pp_q1_desc">Punta —</div>
+      </div>
+      <div class="pb-quot-row" style="margin-top:8px">
+        <div class="pb-quot-bk">
+          <span class="pb-bk-ico" style="background:rgba(240,84,84,.12);color:var(--red)">📕</span>
+          <span class="pb-bk-lbl">BK2</span>
+        </div>
+        <div class="iw" style="width:90px;flex-shrink:0">
+          <input type="number" id="pp_q2" class="pb-q-inp" placeholder="2.00" step="0.01" min="1.01" oninput="calc()">
+        </div>
+        <div class="pb-quot-desc" id="pp_q2_desc">Punta —</div>
+      </div>
+    </div>
+
+    <button class="ex-btn" style="margin-top:10px;width:100%;padding:7px;border-radius:8px;font-size:11px" onclick="pbExample()">📋 Carica Esempio</button>
+  </div>
+
+  <!-- RISULTATI -->
+  <div id="pb_out" style="display:none">
+    <div class="rcard">
+      <div class="rtitle"><span id="res-title">Risultati</span><button class="copy-btn" onclick="doCopy('pb')">📋 Copia tutto</button></div>
+
+      <!-- PB body -->
+      <div id="res-pb-body">
+        <!-- Lay stake + copia -->
+        <div class="res-import-row">
+          <div>
+            <div class="res-import-lbl" id="lbl-ls">Da Bancare (Lay)</div>
+            <div class="res-import-val" id="r_ls">—</div>
+          </div>
+          <button class="mini-copy" onclick="copyVal('r_ls')" title="Copia">⧉</button>
+        </div>
+        <!-- Responsabilità + copia -->
+        <div class="res-import-row">
+          <div>
+            <div class="res-import-lbl">Responsabilità (liquidità)</div>
+            <div class="res-import-val cy" id="r_liab">—</div>
+          </div>
+          <button class="mini-copy" onclick="copyVal('r_liab')" title="Copia">⧉</button>
+        </div>
+        <div class="dv" style="margin:8px 0"></div>
+        <div class="sc2">
+          <div class="sc-box sc-g">
+            <div class="sc-lbl" id="lbl-bkw">Se vince<br>Bookmaker</div>
+            <div class="sc-val" id="r_bkw">—</div>
+          </div>
+          <div class="sc-box sc-y">
+            <div class="sc-lbl" id="lbl-exw">Se vince<br>Exchange</div>
+            <div class="sc-val" id="r_exw">—</div>
+          </div>
+        </div>
+        <div class="rrow" id="rf-row" style="display:none">
+          <span class="rlbl" id="lbl-rf">RF (Resa Rimborso)</span>
+          <span class="rv cm" id="r_rf">—</span>
+        </div>
+        <div class="rrow"><span class="rlbl" id="lbl-pq">Profitto / Perdita media</span><span class="rv" id="r_pq">—</span></div>
+      </div>
+
+      <!-- PP body -->
+      <div id="res-pp-body" style="display:none">
+        <div class="res-import-row">
+          <div>
+            <div class="res-import-lbl">Stake ottimale BK2</div>
+            <div class="res-import-val" id="r_s2">—</div>
+          </div>
+          <button class="mini-copy" onclick="copyVal('r_s2')" title="Copia">⧉</button>
+        </div>
+        <div class="dv" style="margin:8px 0"></div>
+        <div class="sc2">
+          <div class="sc-box sc-g">
+            <div class="sc-lbl">Se vince<br>BK1</div>
+            <div class="sc-val" id="r_w1">—</div>
+          </div>
+          <div class="sc-box sc-y">
+            <div class="sc-lbl">Se vince<br>BK2</div>
+            <div class="sc-val" id="r_w2">—</div>
+          </div>
+        </div>
+        <div class="rrow"><span class="rlbl">Profitto medio</span><span class="rv" id="r_pqpp">—</span></div>
+      </div>
+
+      <div class="rating-wrap">
+        <div class="rating-row">
+          <span class="rating-lbl" id="r_rt_lbl">Rating</span>
+          <span class="rating-num" id="r_rt">—</span>
+        </div>
+        <div class="rating-bar-bg"><div class="rating-bar-fill" id="r_rtbar" style="width:0%"></div></div>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="resetSec('pb')">🗑 Reset</button>
+    </div>
+  </div>
+  <div class="sec-info">
+    <button class="sec-info-btn" onclick="toggleInfo('info-pb')">
+      <span class="sec-info-ico">?</span>
+      <span>Come funziona la Copertura?</span>
+      <span style="margin-left:auto;font-size:10px" id="info-pb-arr">&#9660;</span>
+    </button>
+    <div class="sec-info-body" id="info-pb">
+      <p><strong>Punta/Banca:</strong> Piazzi una puntata sul Bookmaker e una lay (bancata) sull'Exchange. Qualunque risultato vinca, il tuo profitto netto &egrave; lo stesso. La commissione Exchange riduce leggermente il guadagno lato lay.</p>
+      <p><strong>Freebet SNR:</strong> Il bookmaker ti d&agrave; una freebet ma NON restituisce lo stake. Usa la formula speciale: la lay copre solo la vincita netta (quota-1).</p>
+      <p><strong>Rimborso:</strong> Se perdi la scommessa ricevi un rimborso parziale. Inserisci l'importo: l'app lo include nel calcolo della lay ottimale.</p>
+      <p><strong>Punta/Punta:</strong> Copertura tra due bookmaker senza exchange. Utile quando hai una quota alta su BK1 e una quota diversa su BK2 sullo stesso evento.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     MULTIPLA SEQUENZIALE
+══════════════════════════════════════ -->
+<div class="sec" id="s-mp">
+  <div class="hero"><div class="hico">🔗</div><div><div class="ht">Banca Sequenziale</div><div class="hs">Banca evento per evento. Se perde → stop. Se vince → banca il successivo.</div></div></div>
+
+  <div class="card">
+    <div class="ctitle"><span class="cdot" style="background:var(--acc)"></span>IMPOSTAZIONI <button class="ex-btn" onclick="mpExample()">Esempio</button></div>
+    <div class="g2">
+      <div class="field">
+        <div class="lbl">Importo Multipla (€)</div>
+        <div class="iw"><span class="pfx">€</span><input type="number" id="mp_s" class="px" placeholder="35" step="0.01" min="0" oninput="calcMP()"></div>
+      </div>
+      <div class="field">
+        <div class="lbl">Cap Max (€) <span class="tip" onclick="toggleTip(this)">?<span class="tip-box">Vincita massima convertibile in Real Bonus. Es: vinci €300 ma cap €250 → ricevi €250.</span></span></div>
+        <div class="iw"><span class="pfx">€</span><input type="number" id="mp_cap" class="px" placeholder="250" step="1" min="0" oninput="calcMP()"></div>
+      </div>
+    </div>
+    <div class="g2">
+      <div class="field">
+        <div class="lbl">Rigioco Real Bonus (x) <span class="tip" onclick="toggleTip(this)">?<span class="tip-box">Quante volte devi rigiocare il Real Bonus prima di poterlo prelevare. Di solito x1.</span></span></div>
+        <input type="number" id="mp_rig" placeholder="1" step="1" min="1" value="1" oninput="calcMP()">
+      </div>
+      <div class="field">
+        <div class="lbl">Rating Medio (%) <span class="tip" onclick="toggleTip(this)">?<span class="tip-box">Il rating atteso delle tue bancate. Con commissione 5% su Betfair → ~95%.</span></span></div>
+        <div class="iw"><input type="number" id="mp_rat" class="sx" placeholder="95" step="1" min="80" max="100" value="95" oninput="calcMP()"><span class="sfx">%</span></div>
+      </div>
+    </div>
+    <div class="field">
+      <div class="lbl">Rimborso Fittizio (€) <em id="mp_rimb_hint" style="font-style:normal;font-size:10px;color:var(--acc2);margin-left:4px"></em> <span class="tip" onclick="toggleTip(this)">?<span class="tip-box">Inserisci il costo del rigioco del Real Bonus (calcolalo in Fan Sport). Con questo rimborso guadagni sia se vinci sia se perdi la multipla.</span></span></div>
+      <div class="iw"><span class="pfx">€</span><input type="number" id="mp_rimb" class="px" placeholder="0" step="0.01" min="0" value="0" oninput="calcMP()"></div>
+    </div>
+  </div>
+
+  <div id="mp_evlist">
+    <div class="evc" id="ev_1">
+      <div class="evh"><div style="display:flex;align-items:center;gap:8px"><div class="evn">1</div><b style="font-size:12.5px">Evento 1</b><span style="font-size:10px;color:var(--txt2)">— banca prima</span></div></div>
+      <div class="g2">
+        <div class="field"><div class="lbl">Quota Punta</div><input type="number" class="ep" placeholder="1.70" step="0.01" min="1.01" oninput="calcMP()"></div>
+        <div class="field"><div class="lbl">Quota Banca</div><input type="number" class="eb" placeholder="1.75" step="0.01" min="1.01" oninput="calcMP()"></div>
+      </div>
+      <div class="field"><div class="lbl">Commissione (%)</div><div class="iw"><input type="number" class="ec sx" placeholder="5" step="0.5" min="0" value="5" oninput="calcMP()"><span class="sfx">%</span></div></div>
+      <div class="dv"></div>
+      <div class="g2">
+        <div><div style="font-size:9px;color:var(--txt2);margin-bottom:2px;text-transform:uppercase;letter-spacing:.6px">Da Bancare</div><div class="rv cp" id="es_1">—</div></div>
+        <div><div style="font-size:9px;color:var(--txt2);margin-bottom:2px;text-transform:uppercase;letter-spacing:.6px">Responsabilità</div><div class="rv cy" id="el_1">—</div></div>
+      </div>
+    </div>
+    <div class="evc" id="ev_2">
+      <div class="evh"><div style="display:flex;align-items:center;gap:8px"><div class="evn">2</div><b style="font-size:12.5px">Evento 2</b></div><button class="ev-del" onclick="delEv(2)">✕</button></div>
+      <div class="g2">
+        <div class="field"><div class="lbl">Quota Punta</div><input type="number" class="ep" placeholder="1.80" step="0.01" min="1.01" oninput="calcMP()"></div>
+        <div class="field"><div class="lbl">Quota Banca</div><input type="number" class="eb" placeholder="1.85" step="0.01" min="1.01" oninput="calcMP()"></div>
+      </div>
+      <div class="field"><div class="lbl">Commissione (%)</div><div class="iw"><input type="number" class="ec sx" placeholder="5" step="0.5" min="0" value="5" oninput="calcMP()"><span class="sfx">%</span></div></div>
+      <div class="dv"></div>
+      <div class="g2">
+        <div><div style="font-size:9px;color:var(--txt2);margin-bottom:2px;text-transform:uppercase;letter-spacing:.6px">Da Bancare</div><div class="rv cp" id="es_2">—</div></div>
+        <div><div style="font-size:9px;color:var(--txt2);margin-bottom:2px;text-transform:uppercase;letter-spacing:.6px">Responsabilità</div><div class="rv cy" id="el_2">—</div></div>
+      </div>
+      <div style="font-size:10px;color:var(--txt3);margin-top:5px">✅ Solo se Evento 1 ha vinto</div>
+    </div>
+    <div class="evc" id="ev_3">
+      <div class="evh"><div style="display:flex;align-items:center;gap:8px"><div class="evn">3</div><b style="font-size:12.5px">Evento 3</b></div><button class="ev-del" onclick="delEv(3)">✕</button></div>
+      <div class="g2">
+        <div class="field"><div class="lbl">Quota Punta</div><input type="number" class="ep" placeholder="1.70" step="0.01" min="1.01" oninput="calcMP()"></div>
+        <div class="field"><div class="lbl">Quota Banca</div><input type="number" class="eb" placeholder="1.72" step="0.01" min="1.01" oninput="calcMP()"></div>
+      </div>
+      <div class="field"><div class="lbl">Commissione (%)</div><div class="iw"><input type="number" class="ec sx" placeholder="5" step="0.5" min="0" value="5" oninput="calcMP()"><span class="sfx">%</span></div></div>
+      <div class="dv"></div>
+      <div class="g2">
+        <div><div style="font-size:9px;color:var(--txt2);margin-bottom:2px;text-transform:uppercase;letter-spacing:.6px">Da Bancare</div><div class="rv cp" id="es_3">—</div></div>
+        <div><div style="font-size:9px;color:var(--txt2);margin-bottom:2px;text-transform:uppercase;letter-spacing:.6px">Responsabilità</div><div class="rv cy" id="el_3">—</div></div>
+      </div>
+      <div style="font-size:10px;color:var(--txt3);margin-top:5px">✅ Solo se Evento 2 ha vinto</div>
+    </div>
+  </div>
+  <button class="add-ev" onclick="addEv()">＋ Aggiungi Evento</button>
+
+  <div id="mp_out" style="display:none">
+    <div class="rcard">
+      <div class="rtitle">Recap Multipla <button class="copy-btn" onclick="doCopy('mp')">📋 Copia</button></div>
+      <div class="rrow"><span class="rlbl">Quota Totale</span><span class="rv cw" id="mp_qt">—</span></div>
+      <div class="rrow"><span class="rlbl">Vincita Lorda (book vince)</span><span class="rv cw" id="mp_vl">—</span></div>
+      <div class="rrow"><span class="rlbl">Responsabilità Totale Massima</span><span class="rv cy" id="mp_lm">—</span></div>
+      <div class="rrow"><span class="rlbl">Real Bonus netto (dopo rigioco)</span><span class="rv cg" id="mp_vc">—</span></div>
+      <div class="sc2">
+        <div class="sc-box sc-r">
+          <div class="sc-lbl">❌ Se PERDO<br>la multipla</div>
+          <div class="sc-val" id="mp_pp">—</div>
+        </div>
+        <div class="sc-box sc-g">
+          <div class="sc-lbl">✅ Se VINCO<br>la multipla</div>
+          <div class="sc-val" id="mp_pv">—</div>
+        </div>
+      </div>
+      <div class="rating-wrap">
+        <div class="rating-row">
+          <span class="rating-lbl">Rating Medio</span>
+          <span class="rating-num" id="mp_rt">—</span>
+        </div>
+        <div class="rating-bar-bg"><div class="rating-bar-fill" id="mp_rtbar" style="width:0%"></div></div>
+      </div>
+    </div>
+    <div id="mp_alerts"></div>
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="resetSec('mp')">🗑 Reset</button>
+    </div>
+  </div>
+  <div class="sec-info">
+    <button class="sec-info-btn" onclick="toggleInfo('info-mp')">
+      <span class="sec-info-ico">?</span>
+      <span>Come funziona la Multipla?</span>
+      <span style="margin-left:auto;font-size:10px">&#9660;</span>
+    </button>
+    <div class="sec-info-body" id="info-mp">
+      <p><strong>Bancata sequenziale:</strong> Copri ogni evento della multipla uno alla volta. Se l'Evento 1 perde &rarr; incassi la lay e ti fermi. Se vince &rarr; piazzi la lay sull'Evento 2, e cos&igrave; via.</p>
+      <p><strong>Rimborso fittizio:</strong> Inserisci un rimborso per bilanciare i due scenari (perdo vs vinco). Di solito si usa il costo del rigioco del Real Bonus come rimborso.</p>
+      <p><strong>Cap Max:</strong> Limite massimo di conversione del bonus. Se la vincita supera il cap, il Real Bonus &egrave; bloccato al valore del cap.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     FAN BONUS SPORT — Multipla Pro
+══════════════════════════════════════ -->
+<div class="sec" id="s-fs">
+
+  <!-- TAB SINGOLA / MULTIPLA -->
+  <div class="cov-tabs" style="margin-bottom:12px">
+    <div class="ctab" id="fsp-tab-sing" onclick="fspSetMode('sing')">🎯 Fan Singola</div>
+    <div class="ctab on" id="fsp-tab-mult" onclick="fspSetMode('mult')">📊 Fan Multipla</div>
+  </div>
+
+  <!-- ═══ MODALITÀ SINGOLA ═══ -->
+  <div id="fsp-sing-wrap" style="display:none">
+    <div class="fsp-hero" id="fsp_sing_hero" style="display:none">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+        <div style="flex:1">
+          <div style="font-size:10px;font-weight:800;color:var(--acc2);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Fan Bonus Singola</div>
+          <div style="font-family:var(--mono);font-size:36px;font-weight:800;line-height:1;margin-bottom:2px;color:var(--grn)" id="fsp_sing_g">—</div>
+          <div style="font-size:11px;color:var(--txt2)">guadagno garantito</div>
+        </div>
+        <div class="fsp-kpi fsp-kpi-y">
+          <div class="fsp-kpi-lbl">Jackpot</div>
+          <div class="fsp-kpi-val" id="fsp_sing_j">—</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="ctitle"><span class="cdot" style="background:var(--acc)"></span>IMPOSTAZIONI SINGOLA <button class="ex-btn" onclick="fspSingExample()">Esempio</button></div>
+      <div class="g2">
+        <div class="field">
+          <div class="lbl">Bonus (€)</div>
+          <div class="iw"><span class="pfx">€</span><input type="number" id="fsp_sing_bonus" class="px" placeholder="35" step="1" min="0" oninput="calcFSPSing()"></div>
+        </div>
+        <div class="field">
+          <div class="lbl">Conv. Max / Cap (€)</div>
+          <div class="iw"><span class="pfx">€</span><input type="number" id="fsp_sing_cap" class="px" placeholder="50" step="1" min="0" oninput="calcFSPSing()"></div>
+        </div>
+      </div>
+      <div class="g2">
+        <div class="field">
+          <div class="lbl">Costo rigioco (€) <span class="tip" onclick="toggleTip(this)">?<span class="tip-box">Perdita stimata per convertire il Real Bonus. Per la singola, CQ=0 (nessuna bancata qualificante).</span></span></div>
+          <div class="iw"><span class="pfx">€</span><input type="number" id="fsp_sing_cr" class="px" placeholder="10" step="0.5" min="0" value="10" oninput="calcFSPSing()"></div>
+        </div>
+        <div class="field">
+          <div class="lbl">Comm. Exchange (%)</div>
+          <div class="iw"><input type="number" id="fsp_sing_comm" class="sx" placeholder="4.5" step="0.5" min="0" value="4.5" oninput="calcFSPSing()"><span class="sfx">%</span></div>
+        </div>
+      </div>
+      <div class="field">
+        <div class="lbl">Arrotonda bancata a</div>
+        <select id="fsp_sing_arr" onchange="calcFSPSing()">
+          <option value="0.01">€ 0.01</option>
+          <option value="0.10">€ 0.10</option>
+          <option value="1" selected>€ 1.00</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Evento singolo -->
+    <div class="card">
+      <div class="ctitle"><span class="cdot" style="background:var(--grn)"></span>EVENTO SINGOLO</div>
+      <div class="fsp-ev-bd" style="padding:0">
+        <div class="fsp-col">
+          <div class="fsp-ico fsp-ico-bk">BK</div>
+          <input type="number" id="fsp_sing_qbk" placeholder="2.20" step="0.01" min="1.01" oninput="calcFSPSing()">
+        </div>
+        <div class="fsp-sep" style="font-size:16px">→</div>
+        <div class="fsp-col">
+          <div class="fsp-ico fsp-ico-ex">EX</div>
+          <input type="number" id="fsp_sing_qex" placeholder="2.22" step="0.01" min="1.01" oninput="calcFSPSing()">
+        </div>
+        <div class="fsp-res">
+          <div class="fsp-res-lbl">Banca EX</div>
+          <div class="fsp-res-val cp" id="fsp_sing_ls">—</div>
+          <div class="fsp-res-sub" id="fsp_sing_lb">resp. —</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Output singola -->
+    <div id="fsp_sing_out" style="display:none">
+      <div class="rcard" style="position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--acc),var(--grn))"></div>
+        <div class="rtitle">Riepilogo Singola <button class="copy-btn" onclick="doCopy('fss')">📋 Copia</button></div>
+        <div class="rrow"><span class="rlbl">Puntata (Bonus)</span><span class="rv cw" id="fsp_sing_out_bonus">—</span></div>
+        <div class="rrow"><span class="rlbl">Vincita Lorda</span><span class="rv cw" id="fsp_sing_out_vl">—</span></div>
+        <div class="rrow"><span class="rlbl">Real Bonus (dopo cap)</span><span class="rv cg" id="fsp_sing_out_rb">—</span></div>
+        <div class="rrow"><span class="rlbl">Bancata Exchange</span><span class="rv cp" id="fsp_sing_out_ls">—</span></div>
+        <div class="rrow"><span class="rlbl">Responsabilità</span><span class="rv cy" id="fsp_sing_out_liab">—</span></div>
+        <div class="dv"></div>
+        <div class="sc2">
+          <div class="sc-box sc-g">
+            <div class="sc-lbl">COPERTURA<br><span style="font-size:9px;font-weight:400">se EX vince</span></div>
+            <div class="sc-val" id="fsp_sing_out_cop">—</div>
+          </div>
+          <div class="sc-box sc-y">
+            <div class="sc-lbl">JACKPOT<br><span style="font-size:9px;font-weight:400">se BK vince</span></div>
+            <div class="sc-val" id="fsp_sing_out_jack">—</div>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-secondary" onclick="fspSingReset()">🗑 Reset</button>
+    </div>
+  </div>
+
+  <!-- ═══ MODALITÀ MULTIPLA ═══ -->
+  <div id="fsp-mult-wrap">
+  <div class="fsp-hero" id="fsp_hero">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px">
+      <div style="flex:1">
+        <div style="font-size:10px;font-weight:800;color:var(--acc2);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Fan Bonus Multipla Pro</div>
+        <div style="font-family:var(--mono);font-size:46px;font-weight:800;line-height:1;margin-bottom:2px" id="fsp_qt_big" class="cy">—</div>
+        <div style="font-size:11px;color:var(--txt2)" id="fsp_qt_sub">quota totale</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;flex-shrink:0">
+        <div class="fsp-kpi fsp-kpi-g">
+          <div class="fsp-kpi-lbl">Guadagno</div>
+          <div class="fsp-kpi-val" id="fsp_hero_g">—</div>
+        </div>
+        <div class="fsp-kpi fsp-kpi-y">
+          <div class="fsp-kpi-lbl">Jackpot</div>
+          <div class="fsp-kpi-val" id="fsp_hero_j">—</div>
+        </div>
+      </div>
+    </div>
+    <div id="fsp_bar_wrap" style="display:none;margin-top:12px">
+      <div style="display:flex;justify-content:space-between;font-size:10px;margin-bottom:5px">
+        <span style="color:var(--grn);font-weight:700" id="fsp_bar_cop">—</span>
+        <span style="color:var(--txt2);font-size:9px">trascina per sbilanciare</span>
+        <span style="color:var(--ylw);font-weight:700" id="fsp_bar_jack">—</span>
+      </div>
+      <input type="range" id="fsp_slider" min="0" max="100" value="50" step="1" oninput="fspSliderMove(this.value)" style="width:100%;height:32px;cursor:pointer;-webkit-appearance:none;appearance:none;background:linear-gradient(90deg,var(--grn) 0%,var(--acc) 50%,var(--ylw) 100%);border-radius:4px;outline:none">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">
+        <span style="font-size:9px;color:var(--txt3)">+ Copertura</span>
+        <button onclick="fspReset()" style="background:var(--s2);border:1px solid var(--acc);border-radius:20px;color:var(--acc2);font-size:10px;font-weight:700;padding:4px 14px;cursor:pointer;font-family:inherit;letter-spacing:.3px">⚖ Bilanciato</button>
+        <span style="font-size:9px;color:var(--txt3)">+ Jackpot</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Impostazioni bonus -->
+  <div class="card">
+    <div class="ctitle"><span class="cdot" style="background:var(--acc)"></span>IMPOSTAZIONI BONUS <button class="ex-btn" onclick="fspExample()">Esempio</button></div>
+    <div class="g2">
+      <div class="field">
+        <div class="lbl">Bonus (€)</div>
+        <div class="iw"><span class="pfx">€</span><input type="number" id="fsp_bonus" class="px" placeholder="35" step="1" min="0" oninput="calcFSP()"></div>
+      </div>
+      <div class="field">
+        <div class="lbl">Rollover (x)</div>
+        <input type="number" id="fsp_rig" placeholder="1" step="1" min="1" value="1" oninput="calcFSP()">
+      </div>
+    </div>
+    <div class="g2">
+      <div class="field">
+        <div class="lbl">Conv. Max / Cap (€) <span class="tip" onclick="toggleTip(this)">?<span class="tip-box">Vincita massima convertibile in Real Bonus.</span></span></div>
+        <div class="iw"><span class="pfx">€</span><input type="number" id="fsp_cap" class="px" placeholder="250" step="1" min="0" oninput="calcFSP()"></div>
+      </div>
+      <div class="field">
+        <div class="lbl">Comm. Exchange (%) <span class="tip" onclick="toggleTip(this)">?<span class="tip-box">Betfair: 4.5% · Smarkets: 2%</span></span></div>
+        <div class="iw"><input type="number" id="fsp_comm" class="sx" placeholder="4.5" step="0.5" min="0" value="4.5" oninput="calcFSP()"><span class="sfx">%</span></div>
+      </div>
+    </div>
+    <div class="g2">
+      <div class="field">
+        <div class="lbl">Costo qualificante (€) <span class="tip" onclick="toggleTip(this)">?<span class="tip-box">Perdita attesa per qualificare il bonus con la bancata della singola.</span></span></div>
+        <div class="iw"><span class="pfx">€</span><input type="number" id="fsp_cq" class="px" placeholder="2" step="0.5" min="0" value="2" oninput="calcFSP()"></div>
+      </div>
+      <div class="field">
+        <div class="lbl">Costo rigioco (€) <span class="tip" onclick="toggleTip(this)">?<span class="tip-box">Perdita stimata per convertire il Real Bonus. Calcola in Fan Slot.</span></span></div>
+        <div class="iw"><span class="pfx">€</span><input type="number" id="fsp_cr" class="px" placeholder="10" step="0.5" min="0" value="10" oninput="calcFSP()"></div>
+      </div>
+    </div>
+    <div class="g2">
+      <div class="field">
+        <div class="lbl">Quota min totale</div>
+        <input type="number" id="fsp_qmin_tot" placeholder="3" step="0.1" min="1.01" value="3" oninput="calcFSP()">
+      </div>
+      <div class="field">
+        <div class="lbl">Quota min evento</div>
+        <input type="number" id="fsp_qmin_ev" placeholder="1.5" step="0.1" min="1.01" value="1.5" oninput="calcFSP()">
+      </div>
+    </div>
+    <div class="field">
+      <div class="lbl">Arrotonda bancata a</div>
+      <select id="fsp_arr" onchange="calcFSP()">
+        <option value="0.01">€ 0.01</option>
+        <option value="0.10">€ 0.10</option>
+        <option value="1" selected>€ 1.00</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Griglia eventi -->
+  <div id="fsp_evlist"></div>
+  <button class="add-ev" onclick="fspAddEv()">+ Aggiungi Evento</button>
+
+  <!-- Output riepilogo -->
+  <div id="fsp_out" style="display:none">
+    <div class="rcard" style="position:relative;overflow:hidden">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--acc),var(--grn),var(--ylw))"></div>
+      <div class="rtitle">Riepilogo <button class="copy-btn" onclick="doCopy('fs')">📋 Copia</button></div>
+      <div class="rrow"><span class="rlbl">Quota Totale Multipla</span><span class="rv cw" id="fsp_out_qt">—</span></div>
+      <div class="rrow"><span class="rlbl">Puntata (Bonus)</span><span class="rv cw" id="fsp_out_bonus">—</span></div>
+      <div class="rrow"><span class="rlbl">Vincita Lorda</span><span class="rv cw" id="fsp_out_vl">—</span></div>
+      <div class="rrow"><span class="rlbl">Real Bonus (dopo cap)</span><span class="rv cg" id="fsp_out_rb">—</span></div>
+      <div class="rrow"><span class="rlbl">Importo Max Coperture</span><span class="rv cy" id="fsp_out_liab">—</span></div>
+      <div class="dv"></div>
+      <div class="sc2" style="grid-template-columns:1fr 1fr 1fr;gap:6px">
+        <div class="sc-box sc-g">
+          <div class="sc-lbl">COPERTURA<br><span style="font-size:9px;font-weight:400">se perdi ev.1</span></div>
+          <div class="sc-val" id="fsp_out_cop">—</div>
+        </div>
+        <div class="sc-box" style="background:var(--accGlow);border-color:rgba(79,110,247,.25)">
+          <div class="sc-lbl">GUADAGNO<br><span style="font-size:9px;font-weight:400">garantito</span></div>
+          <div class="sc-val cp" id="fsp_out_avg">—</div>
+        </div>
+        <div class="sc-box sc-y">
+          <div class="sc-lbl">JACKPOT<br><span style="font-size:9px;font-weight:400">se vinci tutto</span></div>
+          <div class="sc-val" id="fsp_out_jack">—</div>
+        </div>
+      </div>
+    </div>
+    <div id="fsp_alerts"></div>
+    <div class="ib green"><p><b>Ordine operativo:</b> Banca Ev.1 PRIMA della multipla → se Ev.1 vince banca Ev.2 → se Ev.2 vince banca Ev.3.</p></div>
+    <button class="btn btn-secondary" onclick="resetSec('fs')">🗑 Reset</button>
+  </div><!-- /fsp-mult-wrap -->
+  <div class="sec-info">
+    <button class="sec-info-btn" onclick="toggleInfo('info-fs')">
+      <span class="sec-info-ico">?</span>
+      <span>Come funziona Fan Bonus Multipla?</span>
+      <span style="margin-left:auto;font-size:10px">&#9660;</span>
+    </button>
+    <div class="sec-info-body" id="info-fs">
+      <p><strong>Cos'&egrave;:</strong> GoldBet e altri book danno un Fan Bonus da giocare su una multipla. L'app calcola la bancata ottimale su Betfair per ogni evento, garantendo lo stesso guadagno in tutti gli scenari.</p>
+      <p><strong>Costo qualificante:</strong> La perdita attesa per la bancata della singola che qualifica il bonus (di solito 1-3&euro;).</p>
+      <p><strong>Costo rigioco:</strong> La perdita attesa per convertire il Real Bonus in denaro reale (calcola in Fan Slot).</p>
+      <p><strong>Slider:</strong> Sposta il cursore per sbilanciare: sinistra = pi&ugrave; copertura (guadagno sicuro), destra = pi&ugrave; jackpot (rischio/rendimento maggiore).</p>
+    </div>
+  </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     FAN SLOT
+══════════════════════════════════════ -->
+<div class="sec" id="s-sl">
+  <div class="hero"><div class="hico">🎰</div><div><div class="ht">Fan Bonus Slot</div><div class="hs">Piano Target + Rollover + Tracker wagering in tempo reale</div></div></div>
+
+  <!-- ★ DASHBOARD VISIVA — COLPO D'OCCHIO ★ -->
+  <div id="sl_dashboard" style="display:none">
+    <div class="sl-dash-card">
+      <!-- RIGA 1: TARGET grande + Switch Point -->
+      <div class="sl-dash-top">
+        <div class="sl-dash-main">
+          <div class="sl-dash-lbl">🎯 PORTA IL SALDO A</div>
+          <div class="sl-dash-big" id="sd_target">—</div>
+          <div class="sl-dash-sub" id="sd_molt">— volte il bonus iniziale</div>
+        </div>
+        <div class="sl-dash-right">
+          <div class="sl-dash-sm-box sl-box-red">
+            <div class="sl-dash-sm-lbl">⚡ SWITCH POINT</div>
+            <div class="sl-dash-sm-val" id="sd_sw">—</div>
+            <div class="sl-dash-sm-sub">passa al rollover</div>
+          </div>
+        </div>
+      </div>
+      <!-- RIGA 2: spin fase target + rollover -->
+      <div class="sl-dash-spins">
+        <div class="sl-spin-box sl-spin-t">
+          <div class="sl-spin-phase">⚡ FASE TARGET</div>
+          <div class="sl-spin-lbl">Spin per spin</div>
+          <div class="sl-spin-val" id="sd_spin_t">—</div>
+          <div class="sl-spin-sub">2–5% del saldo · alta volatilità</div>
+        </div>
+        <div class="sl-spin-box sl-spin-r">
+          <div class="sl-spin-phase">🔄 ROLLOVER</div>
+          <div class="sl-spin-lbl">Spin per spin</div>
+          <div class="sl-spin-val" id="sd_spin_r">€0.10 – €0.20</div>
+          <div class="sl-spin-sub">bassa volatilità · spin fisso</div>
+        </div>
+      </div>
+      <!-- RIGA 3: vol rimanente + progresso -->
+      <div class="sl-dash-bottom">
+        <div class="sl-dash-stat">
+          <div class="sl-stat-lbl">Vol. rimanente</div>
+          <div class="sl-stat-val cy" id="sd_vrem">—</div>
+        </div>
+        <div class="sl-dash-stat">
+          <div class="sl-stat-lbl">Progresso</div>
+          <div class="sl-stat-val cp" id="sd_pct">0%</div>
+        </div>
+      </div>
+      <div class="pgw" style="margin-top:8px"><div class="pgf" id="sd_bar" style="width:0%"></div></div>
+      <!-- Live fase badge -->
+      <div id="sd_fase" style="margin-top:10px"></div>
+    </div>
+  </div>
+
+  <!-- INPUT DATI -->
+  <div class="card">
+    <div class="ctitle"><span class="cdot" style="background:var(--ylw)"></span>DATI BONUS <button class="ex-btn" onclick="slExample()">Esempio</button></div>
+    <div class="g2">
+      <div class="field">
+        <div class="lbl">Fan Bonus (€)</div>
+        <div class="iw"><span class="pfx">€</span><input type="number" id="sl_b" class="px" placeholder="60" step="1" min="0" oninput="slBonusChange()"></div>
+      </div>
+      <div class="field">
+        <div class="lbl">Wagering (x) <span class="tip" onclick="toggleTip(this)">?<span class="tip-box">Quante volte giocare il bonus. Es. €60 × 40 = €2.400 di volume teorico richiesto.</span></span></div>
+        <input type="number" id="sl_w" placeholder="40" step="1" min="1" oninput="calcSL()">
+      </div>
+    </div>
+    <div class="g2">
+      <div class="field">
+        <div class="lbl">Cap Max (€) <span class="tip" onclick="toggleTip(this)">?<span class="tip-box">Si auto-compila con l'importo bonus. Modificalo se il cap è diverso.</span></span></div>
+        <div class="iw"><span class="pfx">€</span><input type="number" id="sl_cap" class="px" placeholder="60" step="1" min="0" oninput="calcSL()"></div>
+      </div>
+      <div class="field">
+        <div class="lbl">Contribuzione <span class="tip" onclick="toggleTip(this)">?<span class="tip-box">Quanto vale €1 giocato ai fini del wagering. Lottomatica/GoldBet/Planetwin → 75%. Pragmatic e altri → 50-100%.</span></span></div>
+        <select id="sl_con" onchange="calcSL()">
+          <option value="100">100% — Standard</option>
+          <option value="75">75% — Lottomatica / GoldBet</option>
+          <option value="50">50% — Pragmatic / altri</option>
+          <option value="25">25%</option>
+        </select>
+      </div>
+    </div>
+    <div id="sl_cinfo" class="cinfo" style="display:none"></div>
+  </div>
+
+  <div class="card card-green">
+    <div class="ctitle"><span class="cdot" style="background:var(--grn)"></span>SALDO &amp; TRACKER LIVE</div>
+    <div class="g2">
+      <div class="field">
+        <div class="lbl">Saldo attuale (€) <span class="tip" onclick="toggleTip(this)">?<span class="tip-box">Il tuo saldo Fan Bonus attuale. Ti dice se sei in Fase Target, Rollover o hai già raggiunto il target.</span></span></div>
+        <div class="iw"><span class="pfx">€</span><input type="number" id="sl_sal" class="px" placeholder="0" step="0.01" min="0" oninput="calcSL()"></div>
+      </div>
+      <div class="field">
+        <div class="lbl">Volume giocato (€)</div>
+        <div class="iw"><span class="pfx">€</span><input type="number" id="wg_d" class="px" placeholder="0" step="1" min="0" value="0" oninput="calcSL()"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="sl_out" style="display:none">
+    <!-- DETTAGLI OPERATIVI -->
+    <div class="rcard">
+      <div class="rtitle">Dettaglio Completo <button class="copy-btn" onclick="doCopy('sl')">📋 Copia</button></div>
+      <div class="rrow"><span class="rlbl">Volume Teorico (Bonus × Wagering)</span><span class="rv cw" id="sl_vt">—</span></div>
+      <div class="rrow"><span class="rlbl">Volume Reale (corretto per contribuzione)</span><span class="rv cy" id="sl_vr">—</span></div>
+      <div class="rrow"><span class="rlbl">Perdita Attesa (5% su Vol. Reale)</span><span class="rv cr" id="sl_pa">—</span></div>
+      <div class="dv"></div>
+      <div class="rrow"><span class="rlbl">🎯 Target da raggiungere</span><span class="rv cg big" id="sl_ti">—</span></div>
+      <div class="rrow"><span class="rlbl">Moltiplicatore richiesto</span><span class="rv cp" id="sl_mo">—</span></div>
+      <div class="dv"></div>
+      <div class="rrow"><span class="rlbl">Progresso wagering</span><span class="rv cp" id="wg_pr">—</span></div>
+      <div style="margin:5px 0 6px"><div class="pgw"><div class="pgf" id="wg_pf" style="width:0%"></div></div></div>
+      <div class="rrow"><span class="rlbl">Volume Rimanente</span><span class="rv cy" id="wg_vr">—</span></div>
+      <div class="rrow"><span class="rlbl">Costo Stimato Totale</span><span class="rv cr" id="wg_co">—</span></div>
+      <div class="rrow"><span class="rlbl" style="font-weight:700">Profitto Netto Stimato</span><span class="rv big" id="wg_pn">—</span></div>
+    </div>
+
+    <div id="sl_ev"></div>
+
+    <!-- FASE TARGET -->
+    <div class="card card-yellow">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+        <div class="ctitle" style="margin-bottom:0"><span class="cdot" style="background:var(--ylw)"></span>FASE 1 — TARGET</div>
+        <div class="badge badge-ylw">⚡ 25–30% vol.</div>
+      </div>
+      <div class="ib yellow" style="margin-bottom:10px"><p>Usa slot ad <strong>alta volatilità</strong>. Spin al <strong>2–5% del saldo</strong>. Obiettivo: raggiungere il Target.</p></div>
+      <div class="rrow"><span class="rlbl">Range spin consigliato</span><span class="rv cy" id="sl_st">—</span></div>
+      <div class="rrow"><span class="rlbl">Volume da consumare in questa fase</span><span class="rv cw" id="sl_vot">—</span></div>
+      <div class="dv"></div>
+      <div style="font-size:10px;font-weight:700;color:var(--txt2);margin-bottom:8px;text-transform:uppercase;letter-spacing:.8px">Slot consigliate</div>
+      <div class="slot-card"><div class="slot-rank rank-1">1</div><div><div class="slot-name">Gates of Olympus</div><div class="slot-prov">Pragmatic Play</div><div class="tag-row"><span class="tag tag-y">Alta Vol.</span><span class="tag tag-g">RTP 96.5%</span></div></div></div>
+      <div class="slot-card"><div class="slot-rank rank-2">2</div><div><div class="slot-name">Madame Destiny Megaways</div><div class="slot-prov">Pragmatic Play</div><div class="tag-row"><span class="tag tag-y">Alta Vol.</span><span class="tag tag-g">RTP 96.6%</span></div></div></div>
+      <div class="slot-card"><div class="slot-rank rank-3">3</div><div><div class="slot-name">Sweet Bonanza</div><div class="slot-prov">Pragmatic Play — Backup</div><div class="tag-row"><span class="tag tag-y">Alta Vol.</span><span class="tag tag-g">RTP 96.5%</span></div></div></div>
+    </div>
+
+    <!-- FASE ROLLOVER -->
+    <div class="card card-green">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+        <div class="ctitle" style="margin-bottom:0"><span class="cdot" style="background:var(--grn)"></span>FASE 2 — ROLLOVER</div>
+        <div class="badge badge-grn">🔄 70–75% vol.</div>
+      </div>
+      <div class="ib green" style="margin-bottom:10px"><p>Slot a <strong>bassa volatilità</strong>, vincite frequenti. Spin minimo. Obiettivo: completare il volume <strong>senza bruciare il saldo</strong>.</p></div>
+      <div class="rrow"><span class="rlbl">Spin consigliato</span><span class="rv cg">€0.10 – €0.20</span></div>
+      <div class="rrow"><span class="rlbl">⚡ Switch Point — passa a rollover se saldo &lt;</span><span class="rv cr" id="sl_sw">—</span></div>
+      <div class="rrow"><span class="rlbl">Volume da completare in questa fase</span><span class="rv cw" id="sl_vor">—</span></div>
+      <div class="dv"></div>
+      <div style="font-size:10px;font-weight:700;color:var(--txt2);margin-bottom:8px;text-transform:uppercase;letter-spacing:.8px">Slot consigliate</div>
+      <div class="slot-card"><div class="slot-rank rank-1">1</div><div><div class="slot-name">Dolphin's Pearl Deluxe</div><div class="slot-prov">Novomatic</div><div class="tag-row"><span class="tag tag-g">Bassa Vol.</span><span class="tag tag-g">RTP 95–96%</span><span class="tag tag-b">Freq. alta</span></div></div></div>
+      <div class="slot-card"><div class="slot-rank rank-2">2</div><div><div class="slot-name">Book of Ra Deluxe 10</div><div class="slot-prov">Novomatic</div><div class="tag-row"><span class="tag tag-g">Bassa Vol.</span><span class="tag tag-g">RTP 95.5%</span><span class="tag tag-b">Costante</span></div></div></div>
+      <div class="slot-card"><div class="slot-rank rank-3">3</div><div><div class="slot-name">Big Bounty Gold</div><div class="slot-prov">Backup</div><div class="tag-row"><span class="tag tag-g">Bassa Vol.</span><span class="tag tag-b">Autoclicker OK</span></div></div></div>
+    </div>
+
+    <div class="ib yellow"><p>⚠️ <strong>Switch Point:</strong> Se il saldo scende sotto il 15% del volume reale rimanente → passa SUBITO al Rollover con spin €0.10. Non alzare mai lo stake oltre il 5% del saldo.</p></div>
+    <div class="ib green"><p>✅ Statisticamente <strong>1 su 6</strong> Fan Bonus slot si converte. Nel lungo periodo è <strong>EV+</strong>. La costanza nel metodo è la chiave.</p></div>
+  </div>
+  <button class="btn btn-secondary" onclick="resetSec('sl')">🗑 Reset</button>
+  <div class="sec-info">
+    <button class="sec-info-btn" onclick="toggleInfo('info-sl')">
+      <span class="sec-info-ico">?</span>
+      <span>Come funziona Fan Bonus Slot?</span>
+      <span style="margin-left:auto;font-size:10px">&#9660;</span>
+    </button>
+    <div class="sec-info-body" id="info-sl">
+      <p><strong>Fase Target:</strong> Porta il saldo al valore target con spin ad alta volatilità (2-5% del saldo per spin). Obiettivo: massimizzare il saldo prima del rollover.</p>
+      <p><strong>Switch Point:</strong> Quando il saldo supera questo valore, passa alla fase rollover con spin piccoli e fissi per completare il wagering con perdita minima.</p>
+      <p><strong>Wagering:</strong> Il volume totale di gioco richiesto prima di poter prelevare. Con contribuzione 100% ogni euro giocato conta per intero.</p>
+      <p><strong>Tracker:</strong> Inserisci il saldo attuale per vedere il progresso in tempo reale e capire in quale fase sei.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     CASINO — Roulette + Baccarat
+══════════════════════════════════════ -->
+<div class="sec" id="s-rb">
+  <div class="hero"><div class="hico">🎰</div><div><div class="ht">Puntate Casino</div><div class="hs">Copertura Roulette · Baccarat Player/Banker</div></div></div>
+
+  <!-- MODALITÀ -->
+  <div class="cov-tabs">
+    <div class="ctab on" id="ctab-rou" onclick="setCasMode('rou')">🎡 Roulette</div>
+    <div class="ctab" id="ctab-bac" onclick="setCasMode('bac')">🃏 Baccarat</div>
+  </div>
+
+  <!-- ═══ ROULETTE ═══ -->
+  <div id="cas-rou">
+    <div class="card">
+      <div class="ctitle"><span class="cdot" style="background:var(--red)"></span>IMPOSTAZIONI <button class="ex-btn" onclick="rouExample()">Esempio</button></div>
+
+      <!-- Puntata + Rimborso -->
+      <div class="pb-row3" style="grid-template-columns:1fr 1fr">
+        <div class="pb-field">
+          <div class="pb-lbl">Puntata per dozzina (€)</div>
+          <div class="iw"><span class="pfx">€</span><input type="number" id="rou_s" class="px pb-inp" placeholder="100" step="0.01" min="0" oninput="calcRou()"></div>
+        </div>
+        <div class="pb-field">
+          <div class="pb-lbl">Rimborso (€) <span class="tip" onclick="toggleTip(this)">?<span class="tip-box">Se hai un rimborso bonus, inseriscilo qui. Di default è 0.</span></span></div>
+          <div class="iw"><span class="pfx">€</span><input type="number" id="rou_rimb" class="px pb-inp" placeholder="0" step="0.01" min="0" value="0" oninput="calcRou()"></div>
+        </div>
+      </div>
+
+      <!-- N° dozzine + tipo roulette -->
+      <div class="g2" style="margin-top:9px">
+        <div class="field">
+          <div class="lbl">N° Dozzine da coprire</div>
+          <select id="rou_nd" onchange="calcRou()">
+            <option value="2">2 Dozzine</option>
+            <option value="3" selected>3 Dozzine</option>
+          </select>
+        </div>
+        <div class="field">
+          <div class="lbl">Tipo di Roulette <span class="tip" onclick="toggleTip(this)">?<span class="tip-box">Standard: lo 0 paga 35:1 · Lightning: lo 0 paga 30:1 · Personalizzato: inserisci il payout netto (es. 35 = vinci 35× la puntata)</span></span></div>
+          <select id="rou_tipo" onchange="rouTipoChange()">
+            <option value="35">Standard (0 paga 35×)</option>
+            <option value="30">Lightning (0 paga 30×)</option>
+            <option value="custom">Personalizzato</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Moltiplicatore zero personalizzato -->
+      <div id="rou_custom_row" class="field" style="display:none;margin-top:9px">
+        <div class="lbl">Payout netto dello 0 (es. 35 = vinci 35×) <span class="tip" onclick="toggleTip(this)">?<span class="tip-box">Inserisci il payout netto: 35 per Standard, 30 per Lightning, o il valore specifico del tuo gioco. NON includere la restituzione della puntata.</span></span></div>
+        <input type="number" id="rou_mult" placeholder="35" step="1" min="1" oninput="calcRou()">
+      </div>
+
+      <!-- Arrotondamento -->
+      <div class="g2" style="margin-top:9px">
+        <div class="field">
+          <div class="lbl">Arrotonda copertura 0 a</div>
+          <select id="rou_arr" onchange="calcRou()">
+            <option value="0.01">€ 0.01</option>
+            <option value="0.05">€ 0.05</option>
+            <option value="0.10">€ 0.10</option>
+            <option value="0.50" selected>€ 0.50</option>
+            <option value="1.00">€ 1.00</option>
+          </select>
+        </div>
+        <div class="field">
+          <div class="lbl">Arrotonda puntata a</div>
+          <select id="rou_arr2" onchange="calcRou()">
+            <option value="0.01">€ 0.01</option>
+            <option value="0.10">€ 0.10</option>
+            <option value="0.50">€ 0.50</option>
+            <option value="1.00" selected>€ 1.00</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div id="rou_out" style="display:none">
+      <div class="rcard">
+        <div class="rtitle">Piano Roulette <button class="copy-btn" onclick="doCopy('rb')">📋 Copia</button></div>
+
+        <!-- Dozzine -->
+        <div style="font-size:10px;color:var(--txt2);text-transform:uppercase;letter-spacing:.8px;font-weight:700;margin-bottom:8px">Importi da puntare</div>
+        <div id="rou_dozzine_rows"></div>
+
+        <!-- Copertura zero -->
+        <div class="dv" style="margin:10px 0 8px"></div>
+        <div class="res-import-row" style="border:none;padding:4px 0 0">
+          <div>
+            <div class="res-import-lbl">🟢 Copertura ZERO</div>
+            <div class="res-import-val cy" id="rou_zero">—</div>
+          </div>
+          <button class="mini-copy" onclick="copyVal('rou_zero')">⧉</button>
+        </div>
+
+        <div class="dv" style="margin:10px 0 8px"></div>
+        <div style="font-size:10px;color:var(--txt2);text-transform:uppercase;letter-spacing:.8px;font-weight:700;margin-bottom:8px">Profitti per esito</div>
+        <div id="rou_profit_rows"></div>
+        <div class="rrow" style="margin-top:4px"><span class="rlbl" style="font-weight:700">Profitto se esce lo ZERO</span><span class="rv" id="rou_prof_zero">—</span></div>
+
+        <div class="rating-wrap" style="margin-top:10px">
+          <div class="rating-row">
+            <span class="rating-lbl">Totale puntato per spin</span>
+            <span class="rating-num cy" id="rou_tot">—</span>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-secondary" onclick="resetSec('rb')">🗑 Reset</button>
+    <div class="sec-info">
+      <button class="sec-info-btn" onclick="toggleInfo('info-rb')">
+        <span class="sec-info-ico">?</span>
+        <span>Come funziona Casino?</span>
+        <span style="margin-left:auto;font-size:10px">&#9660;</span>
+      </button>
+      <div class="sec-info-body" id="info-rb">
+        <p><strong>Roulette:</strong> Copri 2 o 3 dozzine + lo zero. Il calcolo dello zero garantisce che il profitto sia massimizzato qualunque numero esca (tranne il rischio minimo del green).</p>
+        <p><strong>Baccarat:</strong> Punta su Banker e copri su Player (o viceversa). Il Banker paga 0.95:1 (5% commissione casino), il Player paga 1:1. Il TIE restituisce le puntate.</p>
+        <p><strong>Rimborso:</strong> Se il casino rimborsa la puntata in caso di perdita, inseriscilo per ottimizzare la copertura.</p>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <!-- ═══ BACCARAT ═══ -->
+  <div id="cas-bac" style="display:none">
+    <div class="card">
+      <div class="ctitle"><span class="cdot" style="background:var(--ylw)"></span>IMPOSTAZIONI <button class="ex-btn" onclick="bacExample()">Esempio</button></div>
+
+      <div class="pb-row3" style="grid-template-columns:1fr 1fr">
+        <div class="pb-field">
+          <div class="pb-lbl">Puntata Player (€)</div>
+          <div class="iw"><span class="pfx">€</span><input type="number" id="bac_s" class="px pb-inp" placeholder="100" step="0.01" min="0" oninput="calcBac()"></div>
+        </div>
+        <div class="pb-field">
+          <div class="pb-lbl">Rimborso (€)</div>
+          <div class="iw"><span class="pfx">€</span><input type="number" id="bac_rimb" class="px pb-inp" placeholder="0" step="0.01" min="0" value="0" oninput="calcBac()"></div>
+        </div>
+      </div>
+
+      <div class="g2" style="margin-top:9px">
+        <div class="field">
+          <div class="lbl">Scegli su cosa puntare</div>
+          <select id="bac_esito" onchange="calcBac()">
+            <option value="player">Punto su PLAYER</option>
+            <option value="banker">Punto su BANKER</option>
+          </select>
+        </div>
+        <div class="field">
+          <div class="lbl">Arrotonda Banker a</div>
+          <select id="bac_arr" onchange="calcBac()">
+            <option value="0.01">€ 0.01</option>
+            <option value="0.10">€ 0.10</option>
+            <option value="0.50">€ 0.50</option>
+            <option value="1.00" selected>€ 1.00</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="ib blue" style="margin-top:10px"><p>💡 <strong>Regole:</strong> Player paga 1:1 (nessuna commissione) · Banker paga 0.95:1 (5% commissione al casino)</p></div>
+    </div>
+
+    <div id="bac_out" style="display:none">
+      <div class="rcard">
+        <div class="rtitle">Piano Baccarat <button class="copy-btn" onclick="doCopy('rb')">📋 Copia</button></div>
+
+        <div class="res-import-row">
+          <div>
+            <div class="res-import-lbl" id="bac_lbl_p">Punta su PLAYER</div>
+            <div class="res-import-val" id="bac_val_p">—</div>
+          </div>
+          <button class="mini-copy" onclick="copyVal('bac_val_p')">⧉</button>
+        </div>
+        <div class="res-import-row">
+          <div>
+            <div class="res-import-lbl" id="bac_lbl_b">Punta su BANKER (copertura)</div>
+            <div class="res-import-val cy" id="bac_val_b">—</div>
+          </div>
+          <button class="mini-copy" onclick="copyVal('bac_val_b')">⧉</button>
+        </div>
+
+        <div class="dv" style="margin:10px 0 8px"></div>
+        <div class="sc2">
+          <div class="sc-box sc-g">
+            <div class="sc-lbl" id="bac_sc1_lbl">Se vince<br>PLAYER</div>
+            <div class="sc-val" id="bac_sc1">—</div>
+          </div>
+          <div class="sc-box sc-y">
+            <div class="sc-lbl" id="bac_sc2_lbl">Se vince<br>BANKER</div>
+            <div class="sc-val" id="bac_sc2">—</div>
+          </div>
+        </div>
+        <div class="rrow"><span class="rlbl">Se TIE (pareggio) — puntate restituite</span><span class="rv cw" id="bac_tie">—</span></div>
+
+        <div class="rating-wrap" style="margin-top:10px">
+          <div class="rating-row">
+            <span class="rating-lbl">Profitto garantito (Player o Banker)</span>
+            <span class="rating-num" id="bac_prof">—</span>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-secondary" onclick="resetSec('rb')">🗑 Reset</button>
+    <div class="sec-info">
+      <button class="sec-info-btn" onclick="toggleInfo('info-rb')">
+        <span class="sec-info-ico">?</span>
+        <span>Come funziona Casino?</span>
+        <span style="margin-left:auto;font-size:10px">&#9660;</span>
+      </button>
+      <div class="sec-info-body" id="info-rb">
+        <p><strong>Roulette:</strong> Copri 2 o 3 dozzine + lo zero. Il calcolo dello zero garantisce che il profitto sia massimizzato qualunque numero esca (tranne il rischio minimo del green).</p>
+        <p><strong>Baccarat:</strong> Punta su Banker e copri su Player (o viceversa). Il Banker paga 0.95:1 (5% commissione casino), il Player paga 1:1. Il TIE restituisce le puntate.</p>
+        <p><strong>Rimborso:</strong> Se il casino rimborsa la puntata in caso di perdita, inseriscilo per ottimizzare la copertura.</p>
+      </div>
+    </div>
+    </div>
+  </div>
+
+<!-- ══════════════════════════════════════
+     SUREBET — Analizzatore quote manuale + Foto AI
+══════════════════════════════════════ -->
+<div class="sec" id="s-sb">
+  <div class="hero"><div class="hico">🔍</div><div><div class="ht">Analisi Surebet</div><div class="hs">Manuale (sempre) · Foto AI (con Netlify/online)</div></div></div>
+
+  <!-- TAB -->
+  <div class="cov-tabs" style="margin-bottom:12px">
+    <div class="ctab on" id="sb-tab-man" onclick="sbSetTab('man')">✏️ Inserisci Quote</div>
+    <div class="ctab" id="sb-tab-foto" onclick="sbSetTab('foto')">📸 Da Foto (online)</div>
+  </div>
+
+  <!-- ═══ TAB MANUALE ═══ -->
+  <div id="sb-man-wrap">
+    <div class="ib blue"><p>💡 Inserisci le quote delle due giocate. L'app applica il <strong>Prompt Core v4.0</strong> in automatico — funziona sempre, anche offline.</p></div>
+
+    <div class="card">
+      <div class="ctitle"><span class="cdot" style="background:var(--acc)"></span>GIOCATA A — PUNTA <button class="ex-btn" onclick="sbExample()">Esempio</button></div>
+      <div class="g2">
+        <div class="field">
+          <div class="lbl">Stake A (€)</div>
+          <div class="iw"><span class="pfx">€</span><input type="number" id="sb_sa" class="px" placeholder="100" step="0.01" min="0" oninput="calcSB()"></div>
+        </div>
+        <div class="field">
+          <div class="lbl">Quota A</div>
+          <input type="number" id="sb_qa" placeholder="2.10" step="0.01" min="1.01" oninput="calcSB()">
+        </div>
+      </div>
+      <div class="g2">
+        <div class="field">
+          <div class="lbl">Tipo mercato A <span class="tip" onclick="toggleTip(this)">?<span class="tip-box">Seleziona il mercato della giocata A. Serve per verificare che A e B siano mercati opposti.</span></span></div>
+          <select id="sb_ma" onchange="calcSB()">
+            <option value="over">Over (es. Over 2.5)</option>
+            <option value="under">Under (es. Under 2.5)</option>
+            <option value="ah_pos">AH + sfavorito (es. +1.5)</option>
+            <option value="ah_neg">AH − favorito (es. −1.5)</option>
+            <option value="1x2_1">1X2 — Vittoria Casa (1)</option>
+            <option value="1x2_x">1X2 — Pareggio (X)</option>
+            <option value="1x2_2">1X2 — Vittoria Ospite (2)</option>
+            <option value="btts_y">BTTS — Entrambe segnano Sì</option>
+            <option value="btts_n">BTTS — Entrambe segnano No</option>
+            <option value="altro">Altro / Non so</option>
+          </select>
+        </div>
+        <div class="field">
+          <div class="lbl">Linea A <span class="tip" onclick="toggleTip(this)">?<span class="tip-box">La soglia: es. 2.5 per Over/Under 2.5, 1.5 per AH. Lascia vuoto per 1X2 o BTTS.</span></span></div>
+          <input type="number" id="sb_la" placeholder="es. 2.5" step="0.25" oninput="calcSB()">
+        </div>
+      </div>
+      <div class="field">
+        <div class="lbl">È un Exchange? <span class="tip" onclick="toggleTip(this)">?<span class="tip-box">Se la giocata A è su Betfair o Smarkets, le commissioni vengono dedotte automaticamente dal profitto.</span></span></div>
+        <select id="sb_bka" onchange="calcSB()">
+          <option value="0">Bookmaker normale (nessuna commissione)</option>
+          <option value="4.5">Betfair Exchange (−4.5%)</option>
+          <option value="2">Smarkets Exchange (−2%)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="ctitle"><span class="cdot" style="background:var(--pur)"></span>GIOCATA B — COPERTURA</div>
+      <div class="g2">
+        <div class="field">
+          <div class="lbl">Quota B</div>
+          <input type="number" id="sb_qb" placeholder="2.05" step="0.01" min="1.01" oninput="calcSB()">
+        </div>
+        <div class="field">
+          <div class="lbl">Stake B <span style="font-size:10px;color:var(--grn)" id="sb_stake_hint">→ auto</span></div>
+          <div class="iw"><span class="pfx">€</span><input type="number" id="sb_sb" class="px" placeholder="auto" step="0.01" min="0" oninput="calcSB()"></div>
+        </div>
+      </div>
+      <div class="g2">
+        <div class="field">
+          <div class="lbl">Tipo mercato B</div>
+          <select id="sb_mb" onchange="calcSB()">
+            <option value="under">Under (es. Under 2.5)</option>
+            <option value="over">Over (es. Over 2.5)</option>
+            <option value="ah_neg">AH − favorito (es. −1.5)</option>
+            <option value="ah_pos">AH + sfavorito (es. +1.5)</option>
+            <option value="1x2_2">1X2 — Vittoria Ospite (2)</option>
+            <option value="1x2_x">1X2 — Pareggio (X)</option>
+            <option value="1x2_1">1X2 — Vittoria Casa (1)</option>
+            <option value="btts_n">BTTS — Entrambe segnano No</option>
+            <option value="btts_y">BTTS — Entrambe segnano Sì</option>
+            <option value="altro">Altro / Non so</option>
+          </select>
+        </div>
+        <div class="field">
+          <div class="lbl">Linea B</div>
+          <input type="number" id="sb_lb" placeholder="es. 2.5" step="0.25" oninput="calcSB()">
+        </div>
+      </div>
+      <div class="field">
+        <div class="lbl">È un Exchange?</div>
+        <select id="sb_bkb" onchange="calcSB()">
+          <option value="0">Bookmaker normale (nessuna commissione)</option>
+          <option value="4.5">Betfair Exchange (−4.5%)</option>
+          <option value="2">Smarkets Exchange (−2%)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ TAB FOTO ═══ -->
+  <div id="sb-foto-wrap" style="display:none">
+    <div class="ib yellow"><p>⚠️ <strong>Richiede connessione internet.</strong> Carica la foto della schedina: l'AI legge le quote, estrapola tutti i dati e applica i check C1→C8 automaticamente.</p></div>
+    <div class="card">
+      <div class="ctitle"><span class="cdot" style="background:var(--acc)"></span>CARICA SCHEDINA</div>
+      <label for="sb_file" style="display:block">
+        <div id="sb-dropzone" style="background:var(--s2);border:2px dashed var(--brd2);border-radius:var(--r);padding:28px 16px;text-align:center;cursor:pointer">
+          <div style="font-size:34px;margin-bottom:8px">📸</div>
+          <div style="font-size:14px;font-weight:700;margin-bottom:4px">Tocca per scegliere o scattare foto</div>
+          <div style="font-size:11px;color:var(--txt2)">JPG · PNG · WEBP · Screenshot</div>
+        </div>
+      </label>
+      <input type="file" id="sb_file" accept="image/*" style="display:none" onchange="sbFileLoad(event)">
+      <div id="sb-preview-wrap" style="display:none;margin-top:12px">
+        <img id="sb-preview-img" style="width:100%;border-radius:10px;border:1px solid var(--brd2);max-height:260px;object-fit:contain;background:var(--s2);display:block">
+        <button class="btn btn-secondary" style="margin-top:8px;padding:8px;font-size:12px" onclick="sbRemoveImg()">🗑 Cambia foto</button>
+      </div>
+      <div class="field" style="margin-top:10px">
+        <div class="lbl">Note aggiuntive (opzionale)</div>
+        <textarea id="sb-note" placeholder="Es: Betfair 5%, tennis, AH live…" style="width:100%;background:var(--s2);border:1.5px solid var(--brd2);border-radius:var(--rsm);color:var(--txt);font-family:'DM Sans',sans-serif;font-size:13px;padding:10px 12px;outline:none;resize:none;height:52px"></textarea>
+      </div>
+      <button class="btn btn-primary" id="sb-analyze-btn" style="margin-top:10px;display:none" onclick="sbAnalyzePhoto()">🔍 Analizza con AI</button>
+    </div>
+    <!-- Loading -->
+    <div id="sb-loading" style="display:none">
+      <div class="card" style="text-align:center;padding:28px 16px">
+        <div style="width:40px;height:40px;border:3px solid var(--s3);border-top-color:var(--acc);border-radius:50%;margin:0 auto 14px;animation:sbspin .8s linear infinite"></div>
+        <div style="font-size:14px;font-weight:700;margin-bottom:4px">Analisi in corso…</div>
+        <div style="font-size:11px;color:var(--txt2)" id="sb-step">Lettura immagine…</div>
+      </div>
+    </div>
+    <!-- Errore AI -->
+    <div id="sb-ai-error" style="display:none">
+      <div class="ib red"><p id="sb-ai-error-txt" style="font-size:12px"></p></div>
+      <button class="btn btn-secondary" style="margin-top:4px" onclick="sbRemoveImg()">🔄 Riprova</button>
+    </div>
+  </div>
+
+  <!-- ═══ OUTPUT ═══ -->
+  <div id="sb_out" style="display:none">
+    <div class="sb-verdict-banner" id="sb_vbanner">
+      <div class="sb-verdict-ico" id="sb_vico">—</div>
+      <div style="flex:1">
+        <div class="sb-verdict-txt" id="sb_vtxt">—</div>
+        <div class="sb-verdict-conf" id="sb_vconf">—</div>
+      </div>
+      <button class="copy-btn" onclick="doCopy('sb')">📋</button>
+    </div>
+    <div class="rcard">
+      <div class="rtitle">Check C1 → C8</div>
+      <div id="sb_checks"></div>
+    </div>
+    <div class="rcard">
+      <div class="rtitle">Calcoli &amp; Profitti</div>
+      <div id="sb_calcoli"></div>
+    </div>
+    <div id="sb_flags_wrap" style="display:none">
+      <div class="ib red" id="sb_flags"></div>
+    </div>
+    <button class="btn btn-secondary" onclick="sbReset()">🗑 Reset</button>
+  <div class="sec-info">
+    <button class="sec-info-btn" onclick="toggleInfo('info-sb')">
+      <span class="sec-info-ico">?</span>
+      <span>Come funziona Surebet?</span>
+      <span style="margin-left:auto;font-size:10px">&#9660;</span>
+    </button>
+    <div class="sec-info-body" id="info-sb">
+      <p><strong>Cos'&egrave; una Surebet:</strong> Quando (1/QA)+(1/QB) &lt; 1, esiste un profitto garantito indipendentemente dal risultato.</p>
+      <p><strong>Check C1-C8:</strong> Verifica mercati, unit&agrave;, handicap, tipo linea (split/push), 3 scenari, middle e commissioni exchange.</p>
+      <p><strong>Middle:</strong> Se le linee sono diverse (es. Over 2.5 + Under 3.5), esiste una zona dove entrambe vincono &rarr; profitto doppio.</p>
+    </div>
+  </div>
+  </div>
+
+</div>
+
+</div><!-- /main -->
+
+<script>
+// ─────────────────────────────────────────
+// UTILS
+// ─────────────────────────────────────────
+function gi(id){return document.getElementById(id);}
+function gv(id){var e=gi(id);if(!e)return 0;var v=parseFloat(e.value);return isNaN(v)?0:v;}
+function sh(id){var e=gi(id);if(e)e.style.display='block';}
+function hd(id){var e=gi(id);if(e)e.style.display='none';}
+function fe(n,d){if(typeof n!=='number'||isNaN(n))return '—';if(d===undefined)d=2;return '€'+n.toFixed(d);}
+function fp(n,d){if(typeof n!=='number'||isNaN(n))return '—';if(d===undefined)d=2;return n.toFixed(d)+'%';}
+function fn(n,d){if(typeof n!=='number'||isNaN(n))return '—';if(d===undefined)d=2;return n.toFixed(d);}
+function colorClass(v){return v>0?'cg':v<0?'cr':'cw';}
+
+function setRv(id,text,cls){
+  var e=gi(id);if(!e)return;
+  e.textContent=text;
+  if(cls)e.className='rv '+cls;
+}
+function setScVal(id,val){
+  var e=gi(id);if(!e)return;
+  e.textContent=fe(val);
+  e.style.color=val>0?'var(--grn)':val<0?'var(--red)':'var(--txt)';
+}
+
+function setRatingBar(barId,numId,rating){
+  var e=gi(barId),n=gi(numId);if(!e||!n)return;
+  var pct=Math.max(0,Math.min(100,(rating-80)/40*100));
+  e.style.width=pct+'%';
+  var col=rating>=96?'var(--grn)':rating>=92?'var(--ylw)':'var(--red)';
+  e.style.background=col;
+  n.style.color=col;
+}
+
+// ─────────────────────────────────────────
+// NAV
+// ─────────────────────────────────────────
+var SECS=['pb','mp','fs','sl','rb','sb'];
+function go(s){
+  SECS.forEach(function(x){
+    var sec=gi('s-'+x),tab=gi('t-'+x);
+    if(sec)sec.classList.remove('on');
+    if(tab)tab.classList.remove('on');
+  });
+  var sec=gi('s-'+s),tab=gi('t-'+s);
+  if(sec)sec.classList.add('on');
+  if(tab)tab.classList.add('on');
+}
+
+// ─────────────────────────────────────────
+// TOOLTIP
+// ─────────────────────────────────────────
+function toggleTip(el){
+  var open=el.classList.contains('open');
+  document.querySelectorAll('.tip.open').forEach(function(t){t.classList.remove('open');});
+  if(!open)el.classList.add('open');
+}
+document.addEventListener('click',function(e){
+  if(!e.target.closest('.tip'))
+    document.querySelectorAll('.tip.open').forEach(function(t){t.classList.remove('open');});
+});
+
+// ─────────────────────────────────────────
+// COPY
+// ─────────────────────────────────────────
+var copyTexts={};
+function doCopy(sec){
+  var txt=copyTexts[sec]||'';if(!txt)return;
+  var btns=document.querySelectorAll('[onclick="doCopy(\''+sec+'\')"]');
+  function flash(){btns.forEach(function(b){var o=b.textContent;b.textContent='✅ Copiato!';b.classList.add('ok');setTimeout(function(){b.textContent=o;b.classList.remove('ok');},2000);});}
+  if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(txt).then(flash).catch(function(){fbCopy(txt,flash);});
+  else fbCopy(txt,flash);
+}
+function fbCopy(txt,cb){
+  var ta=document.createElement('textarea');ta.value=txt;ta.style.cssText='position:fixed;top:-9999px';
+  document.body.appendChild(ta);ta.focus();ta.select();
+  try{document.execCommand('copy');cb&&cb();}catch(e){}
+  document.body.removeChild(ta);
+}
+
+// ─────────────────────────────────────────
+// RESET
+// ─────────────────────────────────────────
+var DEFAULTS={pb_c:'4.5',pb_rimb:'0',mp_rig:'1',mp_rat:'95',mp_rimb:'0',fs_rig:'1',fs_c:'5',fs_rat:'95',fs_rimb:'0',rb_c:'5',wg_d:'0'};
+function resetSec(sec){
+  var s=gi('s-'+sec);if(!s)return;
+  s.querySelectorAll('input[type="number"]').forEach(function(inp){
+    inp.value=DEFAULTS[inp.id]!==undefined?DEFAULTS[inp.id]:'';
+    inp.className=inp.className.replace(/ ok| warn| bad/g,'');
+  });
+  s.querySelectorAll('input[type="checkbox"]').forEach(function(cb){cb.checked=false;});
+  s.querySelectorAll('select').forEach(function(sel){sel.selectedIndex=0;});
+  ['pb_out','mp_out','fs_out','sl_out','rb_out','sl_dashboard'].forEach(function(id){hd(id);});
+  hd('sl_cinfo');
+  var fa=gi('fs_alerts');if(fa)fa.innerHTML='';
+  var ma=gi('mp_alerts');if(ma)ma.innerHTML='';
+  var se=gi('sl_ev');if(se)se.innerHTML='';
+  if(sec==='sl'){var c=gi('sl_cap');if(c){c.value='';delete c.dataset.userEdited;}}
+  if(sec==='pb'){setCovMode('pb');gi('pb_fb').checked=false;updateFBUI();}
+  if(sec==='rb'){setCasMode('rou');}
+  if(sec==='sb'){sbClear();}
+  if(sec==='fs'){fspBias=50;var sld=gi('fsp_slider');if(sld)sld.value=50;hd('fsp_out');hd('fsp_bar_wrap');}
+}
+
+// ─────────────────────────────────────────
+// SEZIONE 1 — COPERTURA
+// ─────────────────────────────────────────
+var covMode='pb';
+
+function toggleFB(){
+  var cb=gi('pb_fb');cb.checked=!cb.checked;updateFBUI();calc();
+}
+function updateFBUI(){
+  var on=gi('pb_fb').checked;
+  gi('fb-row').classList.toggle('on',on);
+  // Se freebet ON: rimborso non ha senso, lo azzero
+  if(on){gi('pb_rimb').value='0';}
+  if(covMode==='pb'){
+    var hasRimb=gv('pb_rimb')>0;
+    gi('res-title').textContent=on?'Risultati Freebet SNR':hasRimb?'Risultati con Rimborso':'Risultati Punta/Banca';
+  }
+}
+
+function setCovMode(m){
+  covMode=m;
+  gi('ctab-pb').classList.toggle('on',m==='pb');
+  gi('ctab-pp').classList.toggle('on',m==='pp');
+  // PB: toggle freebet, rimborso, commissione
+  gi('pb-toggles-row').style.display=m==='pb'?'flex':'none';
+  gi('rimb-field').style.display=m==='pb'?'block':'none';
+  gi('comm-field').style.display=m==='pb'?'block':'none';
+  // PP: extras
+  gi('pb-pp-extras').style.display=m==='pp'?'block':'none';
+  // Quote
+  gi('pb-quotes-pb').style.display=m==='pb'?'block':'none';
+  gi('pb-quotes-pp').style.display=m==='pp'?'block':'none';
+  gi('res-title').textContent=m==='pp'?'Risultati Punta/Punta':'Risultati Punta/Banca';
+  hd('pb_out');calc();
+}
+
+function toggleFBpp(){
+  var cb=gi('pp_fb');cb.checked=!cb.checked;
+  gi('fb-row-pp').classList.toggle('on',cb.checked);
+  calc();
+}
+
+function arrotondaLay(v){
+  var selId=covMode==='pp'?'pp_arr':'pb_arr';
+  var sel=gi(selId);
+  var step=sel?parseFloat(sel.value)||0.01:0.01;
+  return Math.floor(v/step)*step;
+}
+
+function updateQuotaDesc(){
+  // aggiorna le descrizioni inline sotto le quote
+  var stake=gv('pb_s'),q1=gv('pb_q1'),q2=gv('pb_q2'),comm=gv('pb_c')/100;
+  var isFB=gi('pb_fb').checked,rimb=gv('pb_rimb');
+  if(covMode==='pb'){
+    if(stake>0&&q1>=1.01){
+      gi('pb_q1_desc').innerHTML='Punta <strong>'+fe(stake)+'</strong> a quota <strong>'+q1.toFixed(2)+'</strong>';
+    }
+    if(stake>0&&q1>=1.01&&q2>=1.01){
+      var ls,liab;
+      if(isFB){ls=stake*(q1-1)/(q2-comm);}
+      else{ls=rimb>0?(stake*q1-rimb)/(q2-comm):stake*q1/(q2-comm);}
+      ls=arrotondaLay(ls);liab=ls*(q2-1);
+      gi('pb_q2_desc').innerHTML='Banca <strong>'+fe(ls)+'</strong> a quota <strong>'+q2.toFixed(2)+'</strong><span class="liab-hint">€'+liab.toFixed(2)+' responsabilità</span>';
+    }
+  } else {
+    var pp_q1=gv('pp_q1'),pp_q2=gv('pp_q2');
+    if(stake>0&&pp_q1>=1.01) gi('pp_q1_desc').innerHTML='Punta <strong>'+fe(stake)+'</strong> a quota <strong>'+pp_q1.toFixed(2)+'</strong>';
+    if(stake>0&&pp_q1>=1.01&&pp_q2>=1.01){
+      var s2=arrotondaLay(stake*pp_q1/pp_q2);
+      gi('pp_q2_desc').innerHTML='Punta <strong>'+fe(s2)+'</strong> a quota <strong>'+pp_q2.toFixed(2)+'</strong>';
+    }
+  }
+}
+
+function calc(){
+  updateFBUI();
+  updateQuotaDesc();
+  var stake=gv('pb_s'),comm=gv('pb_c')/100;
+  var isFB=gi('pb_fb').checked,rimb=gv('pb_rimb');
+  if(stake<=0){hd('pb_out');return;}
+
+  if(covMode==='pp'){
+    var q1=gv('pp_q1'),q2=gv('pp_q2');
+    if(q1<1.01||q2<1.01){hd('pb_out');return;}
+    var pp_rimb=gv('pp_rimb'),pp_c=gv('pp_c')/100,isFBpp=gi('pp_fb').checked;
+    // Stake BK2: pareggio base = stake1*q1/q2
+    // Con rimborso: se perdo BK1 prendo rimborso → aggiusta bilanciamento
+    // Se freebet BK1: guadagno su BK1 = stake*(q1-1), non restituito stake
+    var s2;
+    if(isFBpp){
+      // Freebet: s2 tale che guadagni simili nei 2 scenari
+      // w1 = stake*(q1-1) - s2*(1+pp_c) [BK1 vince: guadagno netto freebet]  
+      // w2 = s2*(q2-1) - 0 [BK2 vince: nessuno stake perso su BK1, era freebet]
+      // Pareggio: stake*(q1-1) - s2*(1+pp_c) = s2*(q2-1)
+      // s2 = stake*(q1-1) / (q2-1+1+pp_c) = stake*(q1-1)/(q2+pp_c)
+      s2=stake*(q1-1)/(q2+pp_c);
+    } else if(pp_rimb>0){
+      // Con rimborso su BK1: se perdo BK1 prendo rimborso
+      // w1 = stake*(q1-1) - s2*(1+pp_c), w2 = s2*(q2-1) - stake + pp_rimb
+      // Pareggio: stake*q1 - pp_rimb = s2*(q2+pp_c)
+      s2=(stake*q1-pp_rimb)/(q2+pp_c);
+    } else {
+      s2=stake*q1/q2;
+    }
+    s2=arrotondaLay(Math.max(0,s2));
+    var w1,w2;
+    if(isFBpp){
+      w1=stake*(q1-1)-s2*(1+pp_c); // BK1 vince, stake era freebet
+      w2=s2*(q2-1);                 // BK2 vince, stake freebet persa ma era gratis
+    } else if(pp_rimb>0){
+      w1=stake*(q1-1)-s2*(1+pp_c);
+      w2=s2*(q2-1)-stake+pp_rimb;
+    } else {
+      w1=stake*(q1-1)-s2*(1+pp_c);
+      w2=s2*(q2-1)-stake;
+    }
+    var avg=(w1+w2)/2;
+    var rating=(1+avg/stake)*100;
+    var rfPctPP=(pp_rimb>0||isFBpp)?avg/(isFBpp?stake:pp_rimb)*100:null;
+
+    sh('pb_out');hd('res-pb-body');sh('res-pp-body');
+    if(rfPctPP!==null){sh('rf-row');gi('lbl-rf').textContent=isFBpp?'RF (Resa Freebet BK1)':'RF (Resa Rimborso BK1)';setRv('r_rf',fp(rfPctPP,1),'cm');}
+    else hd('rf-row');
+
+    gi('r_s2').textContent=fe(s2);gi('r_s2').style.color='var(--txt)';
+    setScVal('r_w1',w1);setScVal('r_w2',w2);
+    setRv('r_pqpp',fe(avg)+' medio',colorClass(avg));
+    setRatingBar('r_rtbar','r_rt',rating);
+    gi('r_rt').textContent=fp(rating);gi('r_rt_lbl').textContent='Rating';
+
+    // aggiorna desc inline PP
+    if(stake>0&&q1>=1.01) gi('pp_q1_desc').innerHTML='Punta <strong>'+fe(stake)+'</strong> a quota <strong>'+q1.toFixed(2)+'</strong>'+(isFBpp?' 🎁':'');
+    if(s2>0&&q2>=1.01) gi('pp_q2_desc').innerHTML='Punta <strong>'+fe(s2)+'</strong> a quota <strong>'+q2.toFixed(2)+'</strong>'+(pp_c>0?'<span class="liab-hint">comm '+pp_c*100+'%</span>':'');
+
+    copyTexts['pb']='MatchBet Pro — Punta/Punta'+(isFBpp?' (Freebet)':pp_rimb>0?' (Rimborso)':'')+'\nStake BK2: '+fe(s2)+'\nSe vince BK1: '+fe(w1)+'\nSe vince BK2: '+fe(w2)+'\nProfitto medio: '+fe(avg)+'\nRating: '+fp(rating);
+    return;
+  }
+
+  var q1=gv('pb_q1'),q2=gv('pb_q2');
+  if(q1<1.01||q2<1.01){hd('pb_out');return;}
+
+  var ls,pBk,pEx;
+  if(isFB){
+    // Freebet SNR: lay = stake*(q1-1)/(q2-comm)
+    ls=stake*(q1-1)/(q2-comm);
+    pBk=stake*(q1-1)-ls*(q2-1);
+    pEx=ls*(1-comm); // stake non restituito
+  } else if(rimb>0){
+    // Con rimborso: lay = (stake*q1 - rimb)/(q2-comm)
+    ls=(stake*q1-rimb)/(q2-comm);
+    if(ls<=0){hd('pb_out');return;}
+    pBk=stake*(q1-1)-ls*(q2-1);    // BK vince
+    pEx=ls*(1-comm)-stake+rimb;     // EX vince = BK perde = prendo rimborso
+  } else {
+    // Standard qualificante
+    ls=stake*q1/(q2-comm);
+    pBk=stake*(q1-1)-ls*(q2-1);
+    pEx=ls*(1-comm)-stake;
+  }
+  ls=arrotondaLay(ls);
+  // Ricalcola profitti con lay arrotondato
+  if(isFB){
+    pBk=stake*(q1-1)-ls*(q2-1);
+    pEx=ls*(1-comm);
+  } else if(rimb>0){
+    pBk=stake*(q1-1)-ls*(q2-1);
+    pEx=ls*(1-comm)-stake+rimb;
+  } else {
+    pBk=stake*(q1-1)-ls*(q2-1);
+    pEx=ls*(1-comm)-stake;
+  }
+  var liab=ls*(q2-1);
+  var avg=(pBk+pEx)/2;
+  var rating=(1+avg/stake)*100;
+  // RF% = profitto / (rimborso o stake se freebet) * 100
+  var rfBase=isFB?stake:(rimb>0?rimb:0);
+  var rfPct=rfBase>0?(avg/rfBase*100):null;
+
+  sh('pb_out');sh('res-pb-body');hd('res-pp-body');
+
+  gi('r_ls').textContent=fe(ls);gi('r_ls').style.color='var(--txt)';
+  gi('r_liab').textContent=fe(liab);
+
+  gi('lbl-bkw').innerHTML=isFB?'Vincita Freebet<br>BK vince':'Se vince<br>Bookmaker';
+  gi('lbl-exw').innerHTML=isFB?'EX vince<br>(freebet persa)':rimb>0?'EX vince<br>+ Rimborso':'Se vince<br>Exchange';
+  setScVal('r_bkw',pBk);setScVal('r_exw',pEx);
+
+  // RF row
+  if(rfPct!==null){
+    sh('rf-row');
+    gi('lbl-rf').textContent=isFB?'RF (Resa Freebet)':'RF (Resa Rimborso)';
+    setRv('r_rf',fp(rfPct,1),'cm');
+  } else {hd('rf-row');}
+
+  gi('lbl-pq').textContent=avg<0?'Perdita Qualificante':'Profitto';
+  setRv('r_pq',fe(avg),colorClass(avg));
+  setRatingBar('r_rtbar','r_rt',rating);
+  gi('r_rt').textContent=fp(rating);
+  gi('r_rt_lbl').textContent=isFB?'Rating Freebet':rimb>0?'Rating con Rimborso':'Rating';
+
+  var tipo=isFB?'Freebet SNR':rimb>0?'Con Rimborso':'Qualificante';
+  copyTexts['pb']='MatchBet Pro — '+tipo+'\nDa Bancare: '+fe(ls)+'\nResponsabilità: '+fe(liab)+'\nSe vince BK: '+fe(pBk)+'\nSe vince EX: '+fe(pEx)+(rfPct?'\nRF: '+fp(rfPct,1):'')+'\nProfitto medio: '+fe(avg)+'\nRating: '+fp(rating);
+
+  // aggiorna desc inline
+  updateQuotaDesc();
+}
+
+function pbExample(){
+  setCovMode('pb');
+  gi('pb_fb').checked=false;
+  gi('pb_s').value='20';gi('pb_q1').value='2.60';gi('pb_q2').value='2.68';
+  gi('pb_c').value='3';gi('pb_rimb').value='10';gi('pb_arr').value='0.01';
+  calc();
+}
+
+// copy singolo valore
+function copyVal(id){
+  var e=gi(id);if(!e)return;
+  var txt=e.textContent.replace(/[^0-9.,]/g,'').replace(',','.');
+  var btn=(e.parentElement&&e.parentElement.parentElement?e.parentElement.parentElement.querySelector('.mini-copy'):null);
+  function flash(){if(btn){btn.textContent='✓';btn.classList.add('ok');setTimeout(function(){btn.textContent='⧉';btn.classList.remove('ok');},1500);}}
+  if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(txt).then(flash).catch(function(){fbCopy(txt,flash);});
+  else fbCopy(txt,flash);
+}
+
+// ─────────────────────────────────────────
+// SEZIONE 2 — MULTIPLA
+// ─────────────────────────────────────────
+var mpCnt=3;
+function delEv(n){(function(){var _e=gi('ev_'+n);if(_e)_e.remove();})();calcMP();}
+function addEv(){
+  mpCnt++;var n=mpCnt;
+  var d=document.createElement('div');d.className='evc';d.id='ev_'+n;
+  d.innerHTML=`<div class="evh"><div style="display:flex;align-items:center;gap:8px"><div class="evn">${n}</div><b style="font-size:12.5px">Evento ${n}</b></div><button class="ev-del" onclick="delEv(${n})">✕</button></div>
+<div class="g2"><div class="field"><div class="lbl">Quota Punta</div><input type="number" class="ep" placeholder="1.70" step="0.01" min="1.01" oninput="calcMP()"></div>
+<div class="field"><div class="lbl">Quota Banca</div><input type="number" class="eb" placeholder="1.75" step="0.01" min="1.01" oninput="calcMP()"></div></div>
+<div class="field"><div class="lbl">Commissione (%)</div><div class="iw"><input type="number" class="ec sx" placeholder="5" step="0.5" min="0" value="5" oninput="calcMP()"><span class="sfx">%</span></div></div>
+<div class="dv"></div>
+<div class="g2">
+<div><div style="font-size:9px;color:var(--txt2);margin-bottom:2px;text-transform:uppercase;letter-spacing:.6px">Da Bancare</div><div class="rv cp" id="es_${n}">—</div></div>
+<div><div style="font-size:9px;color:var(--txt2);margin-bottom:2px;text-transform:uppercase;letter-spacing:.6px">Responsabilità</div><div class="rv cy" id="el_${n}">—</div></div>
+</div><div style="font-size:10px;color:var(--txt3);margin-top:5px">✅ Solo se Evento ${n-1} ha vinto</div>`;
+  gi('mp_evlist').appendChild(d);
+}
+
+function calcMP(){
+  var stake=gv('mp_s'),cap=gv('mp_cap'),rig=gv('mp_rig')||1,rat=gv('mp_rat')/100,rimb=gv('mp_rimb');
+  if(stake<=0){hd('mp_out');return;}
+  var cards=[...document.querySelectorAll('#mp_evlist .evc')];
+  if(!cards.length){hd('mp_out');return;}
+
+  var ps=[],bs=[],cs=[];var ok=true;
+  cards.forEach(function(c){
+    var p=parseFloat(c.querySelector('.ep').value)||0;
+    var b=parseFloat(c.querySelector('.eb').value)||0;
+    var co=parseFloat(c.querySelector('.ec').value);if(isNaN(co))co=5;
+    ps.push(p);bs.push(b);cs.push(co/100);
+    if(p<1.01||b<1.01)ok=false;
+  });
+  if(!ok){hd('mp_out');return;}
+
+  var qtot=ps.reduce(function(a,p){return a*p;},1);
+  var vlorda=stake*qtot;
+  var vcap=(cap>0)?Math.min(vlorda,cap):vlorda;
+  var costoRig=vcap*rig*(1-rat);
+
+  // Bancate standard (il rimborso è un extra al profitto se perdi ev1)
+  var cumProd=1,liabTot=0,ls0=0,comm0=cs[0];
+  cards.forEach(function(c,i){
+    var puntaEff=stake*cumProd;
+    var ls=puntaEff*ps[i]/(bs[i]-cs[i]);
+    if(i===0){ls0=ls;comm0=cs[0];}
+    var liab=ls*(bs[i]-1);
+    liabTot+=liab;cumProd*=ps[i];
+    var evId=c.id.replace('ev_','');
+    setRv('es_'+evId,fe(ls),'cp');
+    setRv('el_'+evId,fe(liab),'cy');
+  });
+
+  // Profitti
+  var profPerdo=ls0*(1-comm0)-stake+rimb;
+  var profVinco=vcap-liabTot-costoRig;
+  var avg=(profPerdo+profVinco)/2;
+  var rating=(1+avg/stake)*100;
+
+  sh('mp_out');
+
+  // Hint rimborso = costoRig
+  gi('mp_rimb_hint').textContent=rimb>0?'':'→ suggerito: '+fe(costoRig)+' (costo rigioco)';
+
+  setRv('mp_qt',fn(qtot,2),'cw');
+  setRv('mp_vl',fe(vlorda),'cw');
+  setRv('mp_lm',fe(liabTot),'cy');
+  setRv('mp_vc',fe(vcap-costoRig),'cg');
+  setScVal('mp_pp',profPerdo);setScVal('mp_pv',profVinco);
+  setRatingBar('mp_rtbar','mp_rt',rating);
+  gi('mp_rt').textContent=fp(rating);
+
+  var alerts='';
+  if(cap>0&&vlorda>cap)
+    alerts+='<div class="ib yellow"><p>⚠️ <strong>Cap superato!</strong> La vincita lorda ('+fe(vlorda)+') supera il cap (€'+cap.toFixed(0)+'). Real Bonus bloccato al cap.</p></div>';
+  if(cap>0&&liabTot>=cap)
+    alerts+='<div class="ib red"><p>🔴 <strong>Attenzione:</strong> La responsabilità totale ('+fe(liabTot)+') è ≥ al cap (€'+cap.toFixed(0)+'). Riduci le quote o abbassa lo stake — la multipla non è conveniente con questo cap!</p></div>';
+  gi('mp_alerts').innerHTML=alerts;
+
+  copyTexts['mp']='MatchBet Pro — Multipla\nQuota Tot: '+fn(qtot,2)+'\nVincita Lorda: '+fe(vlorda)+'\nRespons. Max: '+fe(liabTot)+'\nReal Bonus netto: '+fe(vcap-costoRig)+'\nSe perdo: '+fe(profPerdo)+'\nSe vinco: '+fe(profVinco)+'\nRating: '+fp(rating);
+}
+function mpExample(){
+  gi('mp_s').value='35';gi('mp_cap').value='250';gi('mp_rig').value='1';gi('mp_rat').value='95';gi('mp_rimb').value='0';
+  var cards=[...document.querySelectorAll('#mp_evlist .evc')];
+  var ex=[[1.7,1.75,5],[1.8,1.85,5],[1.7,1.72,5]];
+  cards.forEach(function(c,i){
+    if(i<ex.length){c.querySelector('.ep').value=ex[i][0];c.querySelector('.eb').value=ex[i][1];c.querySelector('.ec').value=ex[i][2];}
+  });
+  calcMP();
+}
+
+// ─────────────────────────────────────────
+// SEZIONE 3 — FAN SPORT PRO
+// Formula verificata identica all'app esterna
+// ─────────────────────────────────────────
+var fspCnt=0;
+
+function fspMakeEv(n,isDeletable){
+  var ex=[['1.73','1.78'],['1.52','1.58'],['1.77','1.84']];
+  var ph=n<=3?ex[n-1]:['1.70','1.75'];
+  var subTxt=n===1?'Banca PRIMA di piazzare la multipla':'Solo se Evento '+(n-1)+' ha vinto';
+  var delBtn=isDeletable?('<button class="ev-del" onclick="fspDelEv('+n+')">x</button>'):'';
+  return '<div class="fsp-ev" id="fsp_ev_'+n+'"><div class="fsp-ev-hd"><div style="display:flex;align-items:center;gap:8px"><div class="evn">'+n+'</div><div><div style="font-size:12px;font-weight:700">Evento '+n+'</div><div style="font-size:10px;color:var(--txt3)">'+subTxt+'</div></div></div>'+delBtn+'</div><div class="fsp-ev-bd"><div class="fsp-col"><div class="fsp-ico fsp-ico-bk">BK</div><input type="number" class="fsp-qbk" placeholder="'+ph[0]+'" step="0.01" min="1.01" oninput="calcFSP()"></div><div class="fsp-sep">to</div><div class="fsp-col"><div class="fsp-ico fsp-ico-ex">EX</div><input type="number" class="fsp-qex" placeholder="'+ph[1]+'" step="0.01" min="1.01" oninput="calcFSP()"></div><div class="fsp-res"><div class="fsp-res-lbl">Banca EX</div><div class="fsp-res-val cp" id="fsp_ls_'+n+'">--</div><div class="fsp-res-sub" id="fsp_lb_'+n+'">resp. --</div></div></div></div>';
+}
+
+function fspInit(){
+  var el=gi('fsp_evlist');if(!el)return;
+  el.innerHTML='';
+  fspCnt=0;
+  fspAddEv(false);fspAddEv(true);fspAddEv(true);
+}
+
+function fspAddEv(isDeletable){
+  fspCnt++;
+  var el=gi('fsp_evlist');
+  if(!el)return;
+  var d=document.createElement('div');
+  d.innerHTML=fspMakeEv(fspCnt,isDeletable!==false);
+  el.appendChild(d.firstChild);
+}
+
+function fspDelEv(n){
+  var e=gi('fsp_ev_'+n);if(e)e.parentNode.removeChild(e);
+  calcFSP();
+}
+
+function fspArr(v){
+  var step=parseFloat(gi('fsp_arr').value)||1;
+  return Math.round(v/step)*step;
+}
+
+var fspMode='mult';
+
+function fspSetMode(m){
+  fspMode=m;
+  gi('fsp-tab-sing').classList.toggle('on',m==='sing');
+  gi('fsp-tab-mult').classList.toggle('on',m==='mult');
+  gi('fsp-sing-wrap').style.display=m==='sing'?'block':'none';
+  gi('fsp-mult-wrap').style.display=m==='mult'?'block':'none';
+}
+
+function fspSingArr(v){
+  var step=parseFloat(gi('fsp_sing_arr').value)||1;
+  return Math.round(v/step)*step;
+}
+
+function calcFSPSing(){
+  var bonus=gv('fsp_sing_bonus'),cap=gv('fsp_sing_cap');
+  var cr=gv('fsp_sing_cr'),comm=gv('fsp_sing_comm')/100;
+  var qbk=parseFloat(gi('fsp_sing_qbk').value)||0;
+  var qex=parseFloat(gi('fsp_sing_qex').value)||0;
+
+  if(bonus<=0||cap<=0||qbk<1.01||qex<1.01){
+    hd('fsp_sing_out');
+    var h=gi('fsp_sing_hero');if(h)h.style.display='none';
+    gi('fsp_sing_ls').textContent='--';
+    gi('fsp_sing_lb').textContent='resp. --';
+    return;
+  }
+
+  var vincLorda=bonus*qbk;
+  var realBonus=Math.min(vincLorda,cap);
+  // CQ=0 per la singola (nessuna bancata qualificante)
+  var cq=0;
+
+  // G bilanciato: G = realBonus - cr - cq - ls*(qex-1)
+  // ls = (cq+G)/(1-comm) = G/(1-comm)
+  // G = realBonus - cr - G/(1-comm)*(qex-1)
+  // G*(1 + (qex-1)/(1-comm)) = realBonus - cr
+  var denom=1+(qex-1)/(1-comm);
+  var G=(realBonus-cr)/denom;
+
+  var ls=fspSingArr(G/(1-comm));
+  var liab=ls*(qex-1);
+  var profCop=ls*(1-comm);        // se EX vince (scommessa perde): guadagno lay
+  var profJack=realBonus-cr-liab; // se BK vince: real bonus - cr - responsabilità
+
+  // Update evento
+  gi('fsp_sing_ls').textContent=fe(ls);
+  gi('fsp_sing_lb').textContent='resp. '+fe(liab);
+
+  // Hero
+  var h=gi('fsp_sing_hero');if(h)h.style.display='block';
+  var hg=gi('fsp_sing_g');
+  if(hg){hg.textContent=fe(profCop);hg.style.color=profCop>=0?'var(--grn)':'var(--red)';}
+  var hj=gi('fsp_sing_j');
+  if(hj){hj.textContent=fe(profJack);hj.style.color=profJack>=0?'var(--ylw)':'var(--red)';}
+
+  // Output
+  sh('fsp_sing_out');
+  var el;
+  el=gi('fsp_sing_out_bonus');if(el){el.textContent=fe(bonus);el.className='rv cw';}
+  el=gi('fsp_sing_out_vl');if(el){el.textContent=fe(vincLorda);el.className='rv cw';}
+  el=gi('fsp_sing_out_rb');if(el){el.textContent=fe(realBonus);el.className='rv cg';}
+  el=gi('fsp_sing_out_ls');if(el){el.textContent=fe(ls);el.className='rv cp';}
+  el=gi('fsp_sing_out_liab');if(el){el.textContent=fe(liab);el.className='rv cy';}
+  el=gi('fsp_sing_out_cop');if(el){el.textContent=fe(profCop);el.className='sc-val '+(profCop>=0?'cg':'cr');}
+  el=gi('fsp_sing_out_jack');if(el){el.textContent=fe(profJack);el.className='sc-val '+(profJack>=0?'cy':'cr');}
+
+  copyTexts['fss']='Fan Bonus Singola\nBonus:'+fe(bonus)+' Cap:'+fe(cap)+' CR:'+fe(cr)+'\nBanca:'+fe(ls)+' (resp.'+fe(liab)+')\nCopertura:'+fe(profCop)+' Jackpot:'+fe(profJack);
+}
+
+function fspSingExample(){
+  gi('fsp_sing_bonus').value='35';gi('fsp_sing_cap').value='50';
+  gi('fsp_sing_cr').value='10';gi('fsp_sing_comm').value='4.5';
+  gi('fsp_sing_arr').value='0.01';
+  gi('fsp_sing_qbk').value='2.20';gi('fsp_sing_qex').value='2.22';
+  calcFSPSing();
+}
+
+function fspSingReset(){
+  var ids=['fsp_sing_bonus','fsp_sing_cap','fsp_sing_cr','fsp_sing_qbk','fsp_sing_qex'];
+  for(var i=0;i<ids.length;i++){var e=gi(ids[i]);if(e)e.value='';}
+  gi('fsp_sing_ls').textContent='--';
+  gi('fsp_sing_lb').textContent='resp. --';
+  hd('fsp_sing_out');
+  var h=gi('fsp_sing_hero');if(h)h.style.display='none';
+}
+
+var fspBias=50; // 0=tutto copertura, 50=bilanciato, 100=tutto jackpot
+
+function fspReset(){
+  fspBias=50;
+  var slEl=gi('fsp_slider');if(slEl)slEl.value=50;
+  calcFSP();
+}
+
+function fspSliderMove(val){
+  fspBias=parseInt(val);
+  calcFSP();
+}
+
+function calcFSP(){
+  var bonus=gv('fsp_bonus'),cap=gv('fsp_cap');
+  var cq=gv('fsp_cq'),cr=gv('fsp_cr');
+  var comm=gv('fsp_comm')/100;
+  var qminTot=gv('fsp_qmin_tot'),qminEv=gv('fsp_qmin_ev');
+
+  if(bonus<=0){hd('fsp_out');return;}
+
+  var cards=document.querySelectorAll('#fsp_evlist .fsp-ev');
+  if(!cards.length){hd('fsp_out');return;}
+
+  var qBKs=[],qEXs=[],allOk=true,i;
+  for(i=0;i<cards.length;i++){
+    var qbk=parseFloat(cards[i].querySelector('.fsp-qbk').value)||0;
+    var qex=parseFloat(cards[i].querySelector('.fsp-qex').value)||0;
+    qBKs.push(qbk);qEXs.push(qex);
+    if(qbk<1.01||qex<1.01)allOk=false;
+  }
+
+  // Quota totale multipla
+  var qtot=1;
+  for(i=0;i<qBKs.length;i++)qtot*=qBKs[i];
+
+  // Aggiorna hero
+  var qEl=gi('fsp_qt_big');
+  if(qEl){
+    qEl.textContent=qtot>1?qtot.toFixed(2):'--';
+    qEl.style.color=(qminTot>0&&qtot>=qminTot)?'var(--ylw)':'var(--red)';
+  }
+  var qSub=gi('fsp_qt_sub');
+  if(qSub)qSub.textContent='quota totale'+(qminTot>0?(qtot>=qminTot?' ok':' < min '+qminTot.toFixed(1)):'');
+
+  if(!allOk){hd('fsp_out');return;}
+
+  var vincLorda=bonus*qtot;
+  var realBonus=cap>0?Math.min(vincLorda,cap):vincLorda;
+
+  // FORMULA CORRETTA (verificata identica all'app esterna):
+  // G bilanciato (bias=50): G = realBonus - cr - cq - sum(liabs(G))
+  // Con bias: G_effettivo = G_bilanciato + offset
+  // offset positivo → più jackpot (bancate più basse, jackpot sale, copertura scende)
+  // offset negativo → più copertura (bancate più alte, copertura sale, jackpot scende)
+
+  function sumLibs(g){
+    var cum=cq,tot=0,j,ls2,lb2;
+    for(j=0;j<qEXs.length;j++){
+      ls2=(g+cum)/(1-comm);
+      lb2=ls2*(qEXs[j]-1);
+      tot+=lb2;cum+=lb2;
+    }
+    return tot;
+  }
+
+  // Trova G bilanciato con bisection
+  var lo=0,hi=realBonus,mid=0,val,iter;
+  for(iter=0;iter<60;iter++){
+    mid=(lo+hi)/2;
+    val=realBonus-cr-cq-sumLibs(mid)-mid;
+    if(val>0)lo=mid;else hi=mid;
+    if(Math.abs(val)<0.0001)break;
+  }
+  var Gbal=mid;
+
+  // Calcola range min/max di G (bias 0% e 100%)
+  // G_min: bancate massime → copertura massima → jackpot minimo
+  // G_max: bancate minime → jackpot massimo → copertura minima
+  // Usiamo ±40% del G bilanciato come range (ragionevole)
+  var Grange=Gbal*0.6;
+  var Gmin=Math.max(0,Gbal-Grange);
+  var Gmax=Gbal+Grange;
+
+  // G effettivo in base al bias (0=sinistra=copertura, 100=destra=jackpot)
+  var biasFrac=(fspBias-50)/50; // da -1 a +1
+  var G=Gbal+biasFrac*Grange;
+
+  // Calcola bancate finali con arrotondamento
+  var layStakes=[],liabs=[],liabTot=0,cum=cq;
+  for(i=0;i<cards.length;i++){
+    var qex=qEXs[i];
+    var ls=fspArr((G+cum)/(1-comm));
+    var liab=ls*(qex-1);
+    layStakes.push(ls);liabs.push(liab);liabTot+=liab;cum+=liab;
+
+    // Aggiorna UI evento
+    var evId=cards[i].id.replace('fsp_ev_','');
+    var lsEl=gi('fsp_ls_'+evId),lbEl=gi('fsp_lb_'+evId);
+    var qbk=qBKs[i];
+    if(lsEl){
+      lsEl.textContent=fe(ls);
+      lsEl.style.color=(qbk>=qminEv||!qminEv)?'var(--acc2)':'var(--red)';
+    }
+    if(lbEl)lbEl.textContent='resp. '+fe(liab);
+  }
+
+  var profCop=layStakes[0]*(1-comm)-cq;
+  var profJack=realBonus-cr-cq-liabTot;
+  var guadMedio=(profCop+profJack)/2;
+
+  // Hero KPI
+  var hg=gi('fsp_hero_g'),hj=gi('fsp_hero_j');
+  if(hg){hg.textContent=fe(guadMedio);hg.style.color=guadMedio>=0?'var(--grn)':'var(--red)';}
+  if(hj){hj.textContent=fe(profJack);hj.style.color=profJack>=0?'var(--ylw)':'var(--red)';}
+
+  // Slider hero
+  var bw=gi('fsp_bar_wrap');
+  if(bw){
+    bw.style.display='block';
+    var slEl=gi('fsp_slider');if(slEl)slEl.value=fspBias;
+    var bc=gi('fsp_bar_cop'),bj=gi('fsp_bar_jack');
+    if(bc)bc.textContent='Cop. '+fe(profCop);
+    if(bj)bj.textContent='Jack '+fe(profJack);
+  }
+
+  // Output riepilogo
+  sh('fsp_out');
+  var el;
+  el=gi('fsp_out_qt');if(el){el.textContent=qtot.toFixed(2);el.className='rv cw';}
+  el=gi('fsp_out_bonus');if(el){el.textContent=fe(bonus);el.className='rv cw';}
+  el=gi('fsp_out_vl');if(el){el.textContent=fe(vincLorda);el.className='rv cw';}
+  el=gi('fsp_out_rb');if(el){el.textContent=fe(realBonus);el.className='rv cg';}
+  el=gi('fsp_out_liab');if(el){el.textContent=fe(liabTot);el.className='rv cy';}
+  el=gi('fsp_out_cop');if(el){el.textContent=fe(profCop);el.className='sc-val '+(profCop>=0?'cg':'cr');}
+  el=gi('fsp_out_avg');if(el){el.textContent=fe(guadMedio);el.className='sc-val cp';}
+  el=gi('fsp_out_jack');if(el){el.textContent=fe(profJack);el.className='sc-val '+(profJack>=0?'cy':'cr');}
+
+  // Alerts
+  var alerts='';
+  if(cap>0&&vincLorda>cap)
+    alerts+='<div class="ib yellow"><p>Vincita lorda '+fe(vincLorda)+' supera il cap '+fe(cap)+'. Real Bonus bloccato a '+fe(realBonus)+'.</p></div>';
+  if(cap>0&&liabTot>=cap)
+    alerts+='<div class="ib red"><p>Responsabilita totale '+fe(liabTot)+' >= cap '+fe(cap)+'! Abbassa le quote.</p></div>';
+  if(qminTot>0&&qtot<qminTot)
+    alerts+='<div class="ib red"><p>Quota totale '+qtot.toFixed(2)+' < minima richiesta '+qminTot.toFixed(1)+'.</p></div>';
+  var fa=gi('fsp_alerts');if(fa)fa.innerHTML=alerts;
+
+  var lsTxt='';
+  for(i=0;i<layStakes.length;i++)lsTxt+='\n  Ev.'+(i+1)+': '+fe(layStakes[i])+' (resp. '+fe(liabs[i])+')';
+  copyTexts['fs']='Fan Bonus Multipla Pro\nBonus:'+fe(bonus)+' Cap:'+fe(cap)+' CQ:'+fe(cq)+' CR:'+fe(cr)+'\nQuota:'+qtot.toFixed(2)+lsTxt+'\nCopertura:'+fe(profCop)+' Jack:'+fe(profJack)+' Medio:'+fe(guadMedio);
+}
+
+function fspExample(){
+  fspBias=50;
+  var slEl=gi('fsp_slider');if(slEl)slEl.value=50;
+  gi('fsp_bonus').value='35';gi('fsp_cap').value='250';
+  gi('fsp_cq').value='2';gi('fsp_cr').value='10';
+  gi('fsp_comm').value='4.5';gi('fsp_arr').value='1';
+  gi('fsp_qmin_tot').value='3';gi('fsp_qmin_ev').value='1.5';
+  var cards=document.querySelectorAll('#fsp_evlist .fsp-ev');
+  var ex=[[1.73,1.78],[1.52,1.58],[1.77,1.84]];
+  var i;
+  for(i=0;i<cards.length&&i<ex.length;i++){
+    cards[i].querySelector('.fsp-qbk').value=ex[i][0];
+    cards[i].querySelector('.fsp-qex').value=ex[i][1];
+  }
+  calcFSP();
+}
+
+// Legacy aliases
+function calcFS(){calcFSP();}
+function fsSetP0(){}
+function fsSbil(){}
+function fsExample(){fspExample();}
+// ─────────────────────────────────────────
+// SEZIONE 4 — FAN SLOT
+// ─────────────────────────────────────────
+function slBonusChange(){
+  var b=gv('sl_b');
+  var cap=gi('sl_cap');
+  if(cap&&cap.dataset.userEdited!=='true')cap.value=b>0?b:'';
+  calcSL();
+}
+gi('sl_cap').addEventListener('input',function(){this.dataset.userEdited='true';calcSL();});
+gi('sl_cap').addEventListener('blur',function(){if(!this.value)delete this.dataset.userEdited;});
+
+function calcSL(){
+  var bonus=gv('sl_b'),wag=gv('sl_w'),cap=gv('sl_cap'),contrib=gv('sl_con')/100;
+  var saldo=gv('sl_sal'),done=gv('wg_d');
+  if(bonus<=0||wag<=0||contrib<=0){hd('sl_out');hd('sl_cinfo');hd('sl_dashboard');return;}
+
+  var ci=gi('sl_cinfo');
+  if(ci){sh('sl_cinfo');ci.innerHTML='Con contribuzione <strong>'+Math.round(contrib*100)+'%</strong>: €1 giocato vale €'+contrib.toFixed(2)+' ai fini del wagering. Volume da giocare: <strong>×'+(1/contrib).toFixed(2)+'</strong> rispetto al 100%.';}
+
+  var volTeo=bonus*wag;
+  var volReal=volTeo/contrib;
+  var perdita=volReal*0.05;
+  var capEff=(cap>0)?cap:bonus;
+  var target=perdita+capEff;
+  var molt=target/bonus;
+  var volT=volReal*0.275,volR=volReal*0.725;
+  var spinMin=bonus*0.02,spinMax=bonus*0.05;
+  var swPt=volReal*0.15;
+
+  // Tracker
+  var volRem=Math.max(0,volReal-done);
+  var pct=(volReal>0)?Math.min(100,(done/volReal)*100):0;
+  var costTot=volReal*0.05;
+  var pn=capEff-costTot;
+
+  // ── AGGIORNA DASHBOARD ──
+  sh('sl_dashboard');
+  gi('sd_target').textContent=fe(target);
+  gi('sd_molt').textContent=fn(molt,1)+'× il bonus iniziale';
+  gi('sd_sw').textContent=fe(swPt);
+  gi('sd_spin_t').textContent='€'+spinMin.toFixed(2)+' – €'+spinMax.toFixed(2);
+  // spin rollover già fisso nel DOM
+  var pnD=gi('sd_pn');if(pnD){pnD.textContent=fe(pn);pnD.style.color=pn>=0?'var(--grn)':'var(--red)';}
+  gi('sd_vrem').textContent=fe(volRem);
+  gi('sd_pct').textContent=pct.toFixed(0)+'%';
+  var sdBar=gi('sd_bar');if(sdBar)sdBar.style.width=pct.toFixed(1)+'%';
+
+  // fase live nel dashboard
+  var sdFase=gi('sd_fase');
+  if(sdFase){
+    if(saldo>0){
+      if(saldo>=target)sdFase.innerHTML='<div class="fase-live f-roll">✅ TARGET RAGGIUNTO! Passa subito al ROLLOVER — spin €0.10</div>';
+      else if(saldo<=(volReal-done)*0.15)sdFase.innerHTML='<div class="fase-live f-sw">⚡ SWITCH POINT! Passa immediatamente al ROLLOVER!</div>';
+      else sdFase.innerHTML='<div class="fase-live f-target">🎯 Fase TARGET — mancano <strong>'+fe(target-saldo)+'</strong> al target</div>';
+    } else {
+      sdFase.innerHTML='';
+    }
+  }
+
+  sh('sl_out');
+
+  // EV
+  var ec,ei,et;
+  if(molt<=4){ec='ib green';ei='✅';et='<strong>OTTIMO</strong> — Alta probabilità di conversione';}
+  else if(molt<=6){ec='ib yellow';ei='⚠️';et='<strong>ACCETTABILE</strong> — Varianza media, gestibile';}
+  else{ec='ib red';ei='🔴';et='<strong>RISCHIOSO</strong> — Moltiplicatore >6x. Rischio default alto!';}
+  gi('sl_ev').innerHTML='<div class="'+ec+'" style="margin-bottom:10px"><p>'+ei+' '+et+' ('+fn(molt,1)+'x)</p></div>';
+
+  setRv('sl_vt',fe(volTeo),'cw');setRv('sl_vr',fe(volReal),'cy');setRv('sl_pa',fe(perdita),'cr');
+  setRv('sl_ti',fe(target),'cg big');setRv('sl_mo',fn(molt,1)+'x','cp');
+  setRv('sl_st','€'+spinMin.toFixed(2)+' – €'+spinMax.toFixed(2),'cy');
+  setRv('sl_vot',fe(volT),'cw');setRv('sl_sw',fe(swPt),'cr');setRv('sl_vor',fe(volR),'cw');
+  setRv('wg_pr',fp(pct),'cp');
+  var pf=gi('wg_pf');if(pf)pf.style.width=pct.toFixed(1)+'%';
+  setRv('wg_vr',fe(volRem),'cy');setRv('wg_co',fe(costTot),'cr');
+  var pnEl=gi('wg_pn');if(pnEl){pnEl.textContent=fe(pn);pnEl.className='rv big '+(pn>=0?'cg':'cr');}
+
+  copyTexts['sl']='MatchBet Pro — Fan Bonus Slot\nBonus: '+fe(bonus)+' | Wag: x'+wag+' | Contrib: '+Math.round(contrib*100)+'%\nTarget: '+fe(target)+' (x'+fn(molt,1)+')\nSwitch Point: '+fe(swPt)+'\nSpin Target: €'+spinMin.toFixed(2)+'–€'+spinMax.toFixed(2)+'\nVol. Reale: '+fe(volReal)+'\nPerdita Attesa: '+fe(perdita)+'\nProgresso: '+fp(pct)+'\nVol. Rimanente: '+fe(volRem)+'\nProfitto Stimato: '+fe(pn);
+}
+function slExample(){
+  gi('sl_b').value='60';gi('sl_w').value='40';gi('sl_cap').value='60';
+  gi('sl_con').value='100';gi('sl_sal').value='45';gi('wg_d').value='200';
+  calcSL();
+}
+
+// ─────────────────────────────────────────
+// SEZIONE 5 — RIMBORSO
+// ─────────────────────────────────────────
+// ─────────────────────────────────────────
+// SEZIONE 5 — CASINO (Roulette + Baccarat)
+// ─────────────────────────────────────────
+var casMode='rou';
+function setCasMode(m){
+  casMode=m;
+  gi('ctab-rou').classList.toggle('on',m==='rou');
+  gi('ctab-bac').classList.toggle('on',m==='bac');
+  gi('cas-rou').style.display=m==='rou'?'block':'none';
+  gi('cas-bac').style.display=m==='bac'?'block':'none';
+}
+
+function rouTipoChange(){
+  var t=gi('rou_tipo').value;
+  gi('rou_custom_row').style.display=t==='custom'?'block':'none';
+  calcRou();
+}
+
+function rouArr(v,step){return Math.floor(v/step)*step;}
+function rouCeil(v,step){return Math.ceil(v/step)*step;}  // per zero: arrotonda per eccesso
+
+function calcRou(){
+  var stake=gv('rou_s'),rimb=gv('rou_rimb'),nd=parseInt(gi('rou_nd').value)||3;
+  if(stake<=0){hd('rou_out');return;}
+
+  var tipoSel=gi('rou_tipo').value;
+  // payout 35:1 → divisore 36 (vinci 35 + indietro 1)
+  // payout 30:1 → divisore 31 (vinci 30 + indietro 1)
+  // personalizzato: utente inserisce il payout netto (es. 35), divisore = payout+1
+  var payoutNetto;
+  if(tipoSel==='custom'){
+    payoutNetto=gv('rou_mult');
+    if(!payoutNetto||payoutNetto<1){hd('rou_out');return;}
+  } else {
+    payoutNetto=parseFloat(tipoSel); // 35 o 30
+  }
+  var divisore=payoutNetto+1; // es. 35+1=36
+
+  var arrZ=parseFloat(gi('rou_arr').value)||0.5;
+  var arrS=parseFloat(gi('rou_arr2').value)||1;
+
+  // Puntata arrotondata per dozzina (per difetto)
+  var stakeArr=rouArr(stake,arrS);
+  if(stakeArr<=0)stakeArr=stake;
+
+  // Copertura zero ottimale (formula esatta, arrotondamento per ECCESSO):
+  // zero × divisore = stakeArr × nd - rimb
+  // → zero = (stakeArr × nd - rimb) / divisore
+  // Arrotondiamo per ECCESSO per garantire che il profitto zero ≥ profitto dozzina
+  var zeroStakeRaw=(stakeArr*nd-rimb)/divisore;
+  if(zeroStakeRaw<0)zeroStakeRaw=0;
+  var zeroStake=rouCeil(zeroStakeRaw,arrZ);
+
+  // Profitti:
+  // Vince dozzina: guadagno = +stakeArr*2 - stakeArr*(nd-1) - zeroStake + rimb
+  //              = stakeArr*(2-(nd-1)) - zeroStake + rimb
+  //              = stakeArr*(3-nd) - zeroStake + rimb
+  // Con nd=3: profDoz = -zeroStake + rimb
+  // Con nd=2: profDoz = stakeArr - zeroStake + rimb
+  var profDoz=stakeArr*(3-nd)-zeroStake+rimb;
+
+  // Esce 0: guadagno = zeroStake*payoutNetto - stakeArr*nd + rimb
+  var profZero=zeroStake*payoutNetto-stakeArr*nd+rimb;
+
+  var totale=nd*stakeArr+zeroStake;
+
+  sh('rou_out');
+
+  var nomi=['Dozzina 1 (1-12)','Dozzina 2 (13-24)','Dozzina 3 (25-36)'];
+  var dHTML='';
+  for(var i=0;i<nd;i++){
+    dHTML+=`<div class="res-import-row" style="border-bottom:1px solid var(--brd)">
+      <div><div class="res-import-lbl">${nomi[i]}</div><div class="res-import-val" id="rou_d${i}">${fe(stakeArr)}</div></div>
+      <button class="mini-copy" onclick="copyVal('rou_d${i}')">⧉</button>
+    </div>`;
+  }
+  gi('rou_dozzine_rows').innerHTML=dHTML;
+
+  gi('rou_zero').textContent=fe(zeroStake);
+
+  var pHTML='';
+  for(var i=0;i<nd;i++){
+    var col=profDoz>0?'var(--grn)':profDoz<0?'var(--red)':'var(--txt)';
+    pHTML+=`<div class="rrow"><span class="rlbl">Guadagno ${nomi[i]}</span><span class="rv" style="color:${col}">${fe(profDoz)}</span></div>`;
+  }
+  gi('rou_profit_rows').innerHTML=pHTML;
+
+  var pzEl=gi('rou_prof_zero');
+  pzEl.textContent=fe(profZero);
+  pzEl.style.color=profZero>0?'var(--grn)':profZero<0?'var(--red)':'var(--txt)';
+
+  gi('rou_tot').textContent=fe(totale);
+
+  copyTexts['rb']='MatchBet Pro — Roulette\n';
+  for(var i=0;i<nd;i++) copyTexts['rb']+=nomi[i]+': '+fe(stakeArr)+'\n';
+  copyTexts['rb']+='Copertura ZERO: '+fe(zeroStake)+'\n';
+  for(var i=0;i<nd;i++) copyTexts['rb']+='Guadagno '+nomi[i]+': '+fe(profDoz)+'\n';
+  copyTexts['rb']+='Guadagno ZERO: '+fe(profZero)+'\nTotale puntato: '+fe(totale);
+}
+
+function rouExample(){
+  gi('rou_s').value='100';gi('rou_nd').value='3';gi('rou_tipo').value='36';
+  gi('rou_rimb').value='0';gi('rou_arr').value='0.50';gi('rou_arr2').value='1.00';
+  rouTipoChange();
+}
+
+// ── BACCARAT ──
+function calcBac(){
+  var stake=gv('bac_s'),rimb=gv('bac_rimb');
+  var esito=gi('bac_esito').value;
+  var arr=parseFloat(gi('bac_arr').value)||1;
+  if(stake<=0){hd('bac_out');return;}
+
+  // Regole Baccarat:
+  // Player paga 1:1 (senza commissione)
+  // Banker paga 0.95:1 (5% commissione → vince 0.95× la puntata)
+  //
+  // Se punto su PLAYER (stake P) + copro su BANKER (stake B):
+  //   Player vince: guadagno P - B + rimb
+  //   Banker vince: guadagno B*0.95 - P + rimb
+  //   Pareggio: P - B = B*0.95 - P → 2P = B*1.95 → B = 2P/1.95
+  //
+  // Se punto su BANKER (stake B) + copro su PLAYER (stake P):
+  //   Banker vince: guadagno B*0.95 - P + rimb
+  //   Player vince: guadagno P - B + rimb
+  //   Stessa formula: P = 2B/1.95 ... ma di solito si dice:
+  //   Per bilanciare: P = B (circa) ma il player paga meglio
+  //   Il pareggio esatto: P = B*0.95 → se B=100, P=95; se P=100, B=100/0.95=105.26
+  //
+  // Logica pratica: punto X su A, copro con Y su B tale che guadagno_A = guadagno_B
+  // Punto P su Player, copro B su Banker:
+  //   P*1 - B = B*0.95 - P → 2P = 1.95B → B = 2P/1.95
+  // Con rimborso: P - B + rimb = B*0.95 - P + rimb (rimb si cancella, stesso)
+  //   → B = 2P/1.95 (rimb non cambia il bilanciamento, solo alza entrambi i profitti)
+
+  var stakeMain=stake; // la puntata principale
+  var stakeCop; // la copertura
+  var profWin,profCop;
+
+  if(esito==='player'){
+    // Punto su Player, copro su Banker
+    // B = 2*P/1.95
+    stakeCop=rouArr(2*stake/1.95,arr);
+    profWin=stake-stakeCop+rimb;        // Player vince
+    profCop=stakeCop*0.95-stake+rimb;   // Banker vince
+  } else {
+    // Punto su Banker, copro su Player
+    // P = B*0.95 → copro P = B*0.95 arrotondato
+    stakeCop=rouArr(stake*0.95,arr);
+    profWin=stake*0.95-stakeCop+rimb;   // Banker vince
+    profCop=stakeCop-stake+rimb;        // Player vince
+  }
+
+  var tie=0;   // TIE: il casino restituisce le puntate (regola standard Fan Bonus)
+  var profMin=Math.min(profWin,profCop);
+
+  sh('bac_out');
+
+  if(esito==='player'){
+    gi('bac_lbl_p').textContent='Punta su PLAYER';
+    gi('bac_lbl_b').textContent='Copertura su BANKER';
+    gi('bac_sc1_lbl').innerHTML='Se vince<br>PLAYER';
+    gi('bac_sc2_lbl').innerHTML='Se vince<br>BANKER';
+  } else {
+    gi('bac_lbl_p').textContent='Punta su BANKER';
+    gi('bac_lbl_b').textContent='Copertura su PLAYER';
+    gi('bac_sc1_lbl').innerHTML='Se vince<br>BANKER';
+    gi('bac_sc2_lbl').innerHTML='Se vince<br>PLAYER';
+  }
+
+  gi('bac_val_p').textContent=fe(stakeMain);
+  gi('bac_val_b').textContent=fe(stakeCop);
+  setScVal('bac_sc1',profWin);
+  setScVal('bac_sc2',profCop);
+  var tieEl=gi('bac_tie');
+  if(tieEl){tieEl.textContent=fe(tie);tieEl.style.color=tie>=0?'var(--grn)':'var(--red)';}
+
+  var profMinEl=gi('bac_prof');
+  profMinEl.textContent=fe(profMin);
+  profMinEl.style.color=profMin>=0?'var(--grn)':'var(--red)';
+
+  copyTexts['rb']='MatchBet Pro — Baccarat\n';
+  copyTexts['rb']+=(esito==='player'?'Player: '+fe(stakeMain)+'\nBanker: '+fe(stakeCop):'Banker: '+fe(stakeMain)+'\nPlayer: '+fe(stakeCop))+'\n';
+  copyTexts['rb']+='Se vince '+(esito==='player'?'Player':'Banker')+': '+fe(profWin)+'\n';
+  copyTexts['rb']+='Se vince '+(esito==='player'?'Banker':'Player')+': '+fe(profCop)+'\n';
+  copyTexts['rb']+='TIE: '+fe(tie);
+}
+
+function bacExample(){
+  gi('bac_s').value='100';gi('bac_esito').value='player';
+  gi('bac_rimb').value='0';gi('bac_arr').value='1.00';
+  calcBac();
+}
+
+function rbTypeChange(){} // kept for compat
+function calcRB(){}
+
+// ─────────────────────────────────────────
+// SEZIONE SUREBET — Pure JS + Foto AI
+// Manuale: funziona sempre offline
+// Foto AI: funziona solo con HTTPS (Netlify)
+// ─────────────────────────────────────────
+var sbB64=null,sbMime=null,sbStepTimer=null,sbStepIdx=0;
+var sbSteps=['Lettura immagine…','Identificazione quote…','Analisi mercati…','Calcolo surebet…','Preparazione verdetto…'];
+
+function sbSetTab(t){
+  var isMan=t==='man';
+  gi('sb-tab-man').classList.toggle('on',isMan);
+  gi('sb-tab-foto').classList.toggle('on',!isMan);
+  gi('sb-man-wrap').style.display=isMan?'block':'none';
+  gi('sb-foto-wrap').style.display=isMan?'none':'block';
+  hd('sb_out');hd('sb_flags_wrap');
+}
+
+function sbFileLoad(e){
+  var file=e.target.files[0];
+  if(!file)return;
+  var reader=new FileReader();
+  reader.onload=function(r){
+    var data=r.target.result;
+    sbB64=data.split(',')[1];
+    sbMime=file.type||'image/jpeg';
+    gi('sb-preview-img').src=data;
+    gi('sb-preview-wrap').style.display='block';
+    gi('sb-dropzone').style.display='none';
+    gi('sb-analyze-btn').style.display='block';
+    hd('sb_out');hd('sb-ai-error');
+  };
+  reader.readAsDataURL(file);
+}
+
+function sbRemoveImg(){
+  sbB64=null;sbMime=null;
+  var f=gi('sb_file');if(f)f.value='';
+  var pi=gi('sb-preview-img');if(pi)pi.src='';
+  gi('sb-preview-wrap').style.display='none';
+  gi('sb-dropzone').style.display='block';
+  gi('sb-analyze-btn').style.display='none';
+  hd('sb_out');hd('sb-ai-error');
+}
+
+var SB_AI_PROMPT='Agisci come motore decisionale per coperture betting. Analizza la schedina/screenshot e applica questi check.\n\nESTRAI prima le quote visibili nella foto: bookmaker, quota, mercato, linea, stake.\n\nCheck C1-C8:\nC1: Mercati opposti? Over/Under, 1/2, BTTS Si/No, AH+/AH- devono essere coppie opposte.\nC2: Stessa unita di misura?\nC3: Handicap coerente?\nC4: Tipo linea (.5=no push / intera=possibile rimborso / .25-.75=split obbligatorio)\nC5: Test 3 scenari: vince A, vince B, risultato esatto sulla linea\nC6: Surebet? Calcola (1/QA)+(1/QB). Se < 1 e surebet. Profitto% = [1-(1/QA+1/QB)]*100. Stake B ottimale = StakeA*QA/QB\nC7: Middle? Linee diverse con mercati opposti\nC8: Commissioni exchange? Betfair 4.5%, Smarkets 2%\n\nRispondi SOLO con questo formato:\nVERDETTO: ENTRA o SCARTA o DUBBIO\nCONFIDENZA: ALTA o MEDIA o BASSA\nCOPERTURA: COMPLETA o PARZIALE o NON COMPLETA\nPROFITTO: XX euro XX% (oppure N/A)\n\nC1: ok o ERRORE - spiegazione\nC2: ok o ERRORE - spiegazione\nC3: ok o ERRORE - spiegazione\nC4: tipo linea rilevata\nC5: ok o ERRORE - spiegazione\nC6: SUREBET XX% oppure NO SUREBET margine XX%\nC7: MIDDLE ALTO/MEDIO/BASSO fascia X oppure ASSENTE\nC8: commissioni applicate oppure nessuna\n\nSTAKE B OTTIMALE: XX euro\nFLAG: lista flag oppure nessuno\nNOTE: eventuali osservazioni importanti';
+
+function sbAnalyzePhoto(){
+  if(!sbB64)return;
+  hd('sb_out');hd('sb-ai-error');
+  gi('sb-loading').style.display='block';
+  sbStepIdx=0;
+  gi('sb-step').textContent=sbSteps[0];
+  sbStepTimer=setInterval(function(){
+    sbStepIdx=(sbStepIdx+1)%sbSteps.length;
+    gi('sb-step').textContent=sbSteps[sbStepIdx];
+  },1300);
+
+  var note=(gi('sb-note').value||'').trim();
+  var payload={
+    model:'claude-sonnet-4-20250514',
+    max_tokens:900,
+    system:SB_AI_PROMPT,
+    messages:[{role:'user',content:[
+      {type:'image',source:{type:'base64',media_type:sbMime,data:sbB64}},
+      {type:'text',text:'Analizza questa schedina.'+(note?'\nNote: '+note:'')}
+    ]}]
+  };
+
+  fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(payload)
+  }).then(function(r){
+    if(!r.ok){return r.json().then(function(e){throw new Error((e.error&&e.error.message)||'Errore '+r.status);});}
+    return r.json();
+  }).then(function(data){
+    clearInterval(sbStepTimer);
+    gi('sb-loading').style.display='none';
+    var text='';
+    if(data.content){for(var i=0;i<data.content.length;i++){if(data.content[i].type==='text'){text=data.content[i].text;break;}}}
+    sbRenderAIResult(text);
+  }).catch(function(err){
+    clearInterval(sbStepTimer);
+    gi('sb-loading').style.display='none';
+    gi('sb-ai-error-txt').textContent='Errore AI: '+err.message+'. Assicurati che l\'app sia aperta da HTTPS (Netlify).';
+    gi('sb-ai-error').style.display='block';
+  });
+}
+
+function sbRenderAIResult(text){
+  // Determina verdetto
+  var isYes=/VERDETTO:\s*ENTRA/i.test(text);
+  var isNo=/VERDETTO:\s*SCARTA/i.test(text);
+  var vclass=isYes?'v-yes':isNo?'v-no':'v-maybe';
+  var vico=isYes?'✅':isNo?'❌':'⚠️';
+  var vtxt=isYes?'ENTRA':isNo?'SCARTA':'DUBBIO';
+  var confM=text.match(/CONFIDENZA:\s*([A-Z]+)/i);
+  var conf=confM?confM[1]:'—';
+
+  var banner=gi('sb_vbanner');
+  banner.className='sb-verdict-banner '+vclass;
+  gi('sb_vico').textContent=vico;
+  gi('sb_vtxt').textContent=vtxt;
+  gi('sb_vconf').textContent='Confidenza: '+conf+' · analisi da foto';
+
+  // Render le righe con colori
+  var lines=text.split('\n');
+  var cHtml='',kHtml='',flags=[];
+  for(var i=0;i<lines.length;i++){
+    var l=lines[i];
+    var esc=l.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    if(/^C[1-8]:/.test(l)){
+      var col=/ERRORE|❌/.test(l)?'var(--red)':/ok|✅/i.test(l)?'var(--grn)':'var(--ylw)';
+      var ico2=/ERRORE|❌/.test(l)?'❌':/ok|✅/i.test(l)?'✅':'⚠️';
+      cHtml+='<div class="rrow" style="align-items:flex-start"><span class="rlbl" style="color:'+col+';font-weight:600">'+esc+'</span><span style="font-size:14px">'+ico2+'</span></div>';
+    } else if(/^(COPERTURA:|PROFITTO:|STAKE B|FLAG:|NOTE:)/i.test(l)&&l.trim()){
+      var isFlag=/FLAG:/i.test(l)&&!/nessuno/i.test(l);
+      var col2=isFlag?'var(--red)':/STAKE|PROFITTO|COPERTURA/i.test(l)?'var(--grn)':'var(--txt2)';
+      kHtml+='<div class="rrow"><span class="rlbl" style="color:'+col2+';font-weight:600">'+esc+'</span></div>';
+      if(isFlag)flags.push(esc);
+    }
+  }
+  gi('sb_checks').innerHTML=cHtml||'<div style="white-space:pre-wrap;font-size:12px;color:var(--txt2);padding:6px 0">'+text.replace(/</g,'&lt;')+'</div>';
+  gi('sb_calcoli').innerHTML=kHtml;
+
+  if(flags.length){
+    gi('sb_flags_wrap').style.display='block';
+    gi('sb_flags').innerHTML='<p style="font-size:12px">'+flags.join('<br>')+'</p>';
+  } else {
+    hd('sb_flags_wrap');
+  }
+  sh('sb_out');
+  copyTexts['sb']=text;
+}
+
+function sbMercatoChange(){calcSB();}
+
+function sbExample(){
+  gi('sb_sa').value='65';gi('sb_qa').value='4.310';
+  gi('sb_ma').value='over';gi('sb_la').value='3.5';gi('sb_bka').value='0';
+  gi('sb_qb').value='1.390';gi('sb_sb').value='200';
+  gi('sb_mb').value='under';gi('sb_lb').value='3.5';gi('sb_bkb').value='0';
+  calcSB();
+}
+
+function sbReset(){
+  var ids=['sb_sa','sb_qa','sb_la','sb_sb','sb_qb','sb_lb'];
+  for(var i=0;i<ids.length;i++){var e=gi(ids[i]);if(e)e.value='';}
+  if(gi('sb_ma'))gi('sb_ma').selectedIndex=0;
+  if(gi('sb_mb'))gi('sb_mb').selectedIndex=0;
+  if(gi('sb_bka'))gi('sb_bka').selectedIndex=0;
+  if(gi('sb_bkb'))gi('sb_bkb').selectedIndex=0;
+  var h=gi('sb_stake_hint');if(h)h.textContent='\u2192 auto';
+  hd('sb_out');hd('sb_flags_wrap');
+}
+function sbClear(){sbReset();}
+
+function calcSB(){
+  var sa=gv('sb_sa'),qa=gv('sb_qa'),qb=gv('sb_qb'),sbR=gv('sb_sb');
+  var ma=gi('sb_ma').value,mb=gi('sb_mb').value;
+  var commA=parseFloat(gi('sb_bka').value)||0;
+  var commB=parseFloat(gi('sb_bkb').value)||0;
+  var laRaw=gi('sb_la').value,lbRaw=gi('sb_lb').value;
+  var laNum=laRaw!==''?parseFloat(laRaw):NaN;
+  var lbNum=lbRaw!==''?parseFloat(lbRaw):NaN;
+
+  if(sa<=0||qa<1.01||qb<1.01){hd('sb_out');return;}
+
+  // Stake B ottimale (per surebet esatta: profitto uguale nei 2 scenari)
+  // StakeA*(QA-1)*(1-commA) - StakeB = StakeB*(QB-1)*(1-commB) - StakeA
+  // StakeA*QA*(1-commA) = StakeB*(QB*(1-commB) - commB + 1 - 1 + 1)
+  // Formula semplificata (standard): StakeB = StakeA*QA / QB
+  var sb_auto=(sbR<=0);
+  var sb=sb_auto?(sa*qa/qb):sbR;
+  var hint=gi('sb_stake_hint');
+  if(hint)hint.textContent=sb_auto?('\u2192 \u20ac'+sb.toFixed(2)+' (ottimale)'):' ';
+
+  var cA=commA/100,cB=commB/100;
+  // Profitto netto quando vince A: guadagno A - perdo B
+  var pAw=sa*(qa-1)*(1-cA)-sb;
+  // Profitto netto quando vince B: guadagno B - perdo A
+  var pBw=sb*(qb-1)*(1-cB)-sa;
+
+  var checks=[],flags=[],fatal=false;
+
+  // ── C1: Mercati opposti ──
+  var c1ok=SB_OPP[ma]===mb||SB_OPP[mb]===ma;
+  var c1w=ma==='altro'||mb==='altro';
+  if(!c1ok&&!c1w)fatal=true;
+  checks.push({n:1,lbl:'Mercato opposto',s:c1w?'warn':c1ok?'ok':'err',
+    note:c1w?'Verifica manualmente':c1ok?gi('sb_ma').options[gi('sb_ma').selectedIndex].text+' \u2194 '+gi('sb_mb').options[gi('sb_mb').selectedIndex].text:'\u274c Non sono opposti \u2014 copertura impossibile'});
+
+  // ── C2: Stessa unità ──
+  checks.push({n:2,lbl:'Stessa unit\xe0 di misura',s:'ok',note:'ok'});
+
+  // ── C3: Handicap coerente ──
+  var c3s='ok',c3n='N/A (non AH)';
+  if(ma.startsWith('ah_')||mb.startsWith('ah_')){
+    if((ma==='ah_pos'&&mb==='ah_pos')||(ma==='ah_neg'&&mb==='ah_neg')){c3s='err';c3n='Stesso segno AH \u2014 non valido';fatal=true;}
+    else c3n='Segni opposti \u2714';
+  }
+  checks.push({n:3,lbl:'Handicap coerente',s:c3s,note:c3n});
+
+  // ── C4: Tipo linea ──
+  var c4n='Linee non inserite',isSplit=false,isMiddle=false;
+  if(!isNaN(laNum)&&!isNaN(lbNum)){
+    var laf=((laNum%1)+1)%1,lbf=((lbNum%1)+1)%1;
+    isSplit=laf===0.25||laf===0.75||lbf===0.25||lbf===0.75;
+    var oppMkt=(ma==='over'&&mb==='under')||(ma==='under'&&mb==='over');
+    isMiddle=oppMkt&&laNum!==lbNum;
+    if(isSplit){c4n='Linea .25/.75 \u2192 SPLIT obbligatorio (met\xe0 stake su ciascuna linea)';flags.push('\ud83d\udd34 SPLIT: dividi la puntata in due, met\xe0 sulla linea inferiore e met\xe0 sulla superiore');}
+    else if(laNum%1===0||lbNum%1===0){c4n='Linea intera \u2192 possibile rimborso su push';flags.push('\ud83d\udd34 RIMBORSO: linea intera \u2014 verifica la regola push del bookmaker');}
+    else{c4n='Linea .5 \u2192 nessun push possibile \u2714';}
+  } else if(!isNaN(laNum)||!isNaN(lbNum)){c4n='Inserisci entrambe le linee per l\'analisi completa';}
+  checks.push({n:4,lbl:'Tipo linea',s:'ok',note:c4n});
+
+  // ── C5: 3 scenari ──
+  var c5s=pAw>=0&&pBw>=0?'ok':pAw<0&&pBw<0?'err':'warn';
+  var c5n=c5s==='ok'?'Copertura completa \u2714':c5s==='err'?'Entrambi gli scenari in perdita':'Copertura parziale (uno dei due scenari in perdita)';
+  if(c5s==='err')fatal=true;
+  checks.push({n:5,lbl:'Test 3 scenari',s:c5s,note:c5n});
+
+  // ── C6: Surebet ──
+  var inv=(1/qa)+(1/qb),isSB=inv<1;
+  var sbPct=isSB?(1-inv)*100:0;
+  var marg=!isSB?((inv-1)*100):0;
+  checks.push({n:6,lbl:'Surebet matematica',s:isSB?'ok':'err',
+    note:isSB?('\u2705 Profitto garantito '+sbPct.toFixed(2)+'% \u2014 entra!'):('\u274c Margine book '+marg.toFixed(2)+'% \u2014 non \xe8 una surebet')});
+
+  // ── C7: Middle ──
+  var c7n='Assente';
+  if(isMiddle){var fas=Math.abs(lbNum-laNum);c7n='MIDDLE '+(fas<0.75?'BASSO':fas<1.25?'MEDIO':'ALTO')+' \u2014 fascia '+fas.toFixed(2)+' gol';}
+  checks.push({n:7,lbl:'Middle',s:'ok',note:c7n});
+
+  // ── C8: Commissioni ──
+  var c8n=commA>0||commB>0?'Applicate: A \u2212'+commA+'% / B \u2212'+commB+'%':'Nessun exchange \u2014 nessuna commissione';
+  checks.push({n:8,lbl:'Commissioni exchange',s:'ok',note:c8n});
+
+  // ── VERDETTO ──
+  var verd,vclass,vico;
+  if(fatal){verd='SCARTA';vclass='v-no';vico='\u274c';}
+  else if(isSB&&c1ok&&!isSplit){verd='ENTRA';vclass='v-yes';vico='\u2705';}
+  else if(c1w||isSplit||c5s==='warn'){verd='DUBBIO';vclass='v-maybe';vico='\u26a0\ufe0f';}
+  else if(pAw>=0||pBw>=0){verd='ENTRA';vclass='v-yes';vico='\u2705';}
+  else{verd='SCARTA';vclass='v-no';vico='\u274c';}
+
+  var conf=fatal?'ALTA':isSB&&flags.length===0?'ALTA':'MEDIA';
+
+  // ── RENDER ──
+  var banner=gi('sb_vbanner');
+  banner.className='sb-verdict-banner '+vclass;
+  gi('sb_vico').textContent=vico;
+  gi('sb_vtxt').textContent=verd;
+  gi('sb_vconf').textContent='Confidenza: '+conf+(isMiddle?' \u00b7 Middle rilevato':'')+(isSB?' \u00b7 Surebet +'+sbPct.toFixed(2)+'%':'');
+
+  // Checks
+  var cHtml=checks.map(function(c){
+    var col=c.s==='ok'?'var(--grn)':c.s==='err'?'var(--red)':'var(--ylw)';
+    var ico=c.s==='ok'?'\u2705':c.s==='err'?'\u274c':'\u26a0\ufe0f';
+    return '<div class="rrow" style="align-items:flex-start"><span class="rlbl"><span style="color:'+col+';font-weight:800;margin-right:4px">C'+c.n+'</span><span style="font-weight:600">'+c.lbl+'</span><br><span style="color:var(--txt2);font-size:10px">'+c.note+'</span></span><span style="font-size:16px;flex-shrink:0;padding-top:2px">'+ico+'</span></div>';
+  }).join('');
+  gi('sb_checks').innerHTML=cHtml;
+
+  // Calcoli
+  var tot=sa+sb;
+  var kH='';
+  kH+='<div class="rrow"><span class="rlbl">Stake A</span><span class="rv cw">'+fe(sa)+'</span></div>';
+  kH+='<div class="rrow"><span class="rlbl">Stake B'+(sb_auto?' (calcolato ottimale)':'')+'</span><span class="rv cw">'+fe(sb)+'</span></div>';
+  kH+='<div class="rrow"><span class="rlbl">Totale investito</span><span class="rv cy">'+fe(tot)+'</span></div>';
+  kH+='<div class="dv"></div>';
+  kH+='<div class="rrow"><span class="rlbl">Se vince giocata A</span><span class="rv" style="color:'+(pAw>=0?'var(--grn)':'var(--red)')+'">'+fe(pAw)+'</span></div>';
+  kH+='<div class="rrow"><span class="rlbl">Se vince giocata B</span><span class="rv" style="color:'+(pBw>=0?'var(--grn)':'var(--red)')+'">'+fe(pBw)+'</span></div>';
+  if(isSB){
+    var minP=Math.min(pAw,pBw);
+    kH+='<div class="rrow"><span class="rlbl" style="font-weight:700">\u2705 Profitto minimo garantito</span><span class="rv cg big">'+fe(minP)+'</span></div>';
+    kH+='<div class="rrow"><span class="rlbl">Rendimento</span><span class="rv cg">'+fp(sbPct)+' sul totale</span></div>';
+  }
+  if(isSplit){
+    kH+='<div class="dv"></div>';
+    kH+='<div class="rrow"><span class="rlbl">\u26a1 Stake A da dividere (met\xe0 + met\xe0)</span><span class="rv cy">'+fe(sa/2)+' + '+fe(sa/2)+'</span></div>';
+    kH+='<div class="rrow"><span class="rlbl">\u26a1 Stake B da dividere (met\xe0 + met\xe0)</span><span class="rv cy">'+fe(sb/2)+' + '+fe(sb/2)+'</span></div>';
+  }
+  if(isMiddle){
+    var mp=sa*(qa-1)*(1-cA)+sb*(qb-1)*(1-cB);
+    kH+='<div class="dv"></div>';
+    kH+='<div class="rrow"><span class="rlbl">\ud83c\udfaf Middle \u2014 se entrambe vincono</span><span class="rv cy">'+fe(mp)+'</span></div>';
+  }
+  gi('sb_calcoli').innerHTML=kH;
+
+  if(flags.length){sh('sb_flags_wrap');gi('sb_flags').innerHTML='<p style="font-size:12px;line-height:1.7">'+flags.join('<br>')+'</p>';}
+  else hd('sb_flags_wrap');
+
+  sh('sb_out');
+  copyTexts['sb']='MatchBet Pro — Surebet\nVERDETTO: '+verd+' ('+conf+')\n\nA: '+fe(sa)+' @ '+qa+(commA?' ['+commA+'% comm]':'')+'\nB: '+fe(sb)+' @ '+qb+(commB?' ['+commB+'% comm]':'')+'\nTotale: '+fe(tot)+'\n\nSe vince A: '+fe(pAw)+'\nSe vince B: '+fe(pBw)+(isSB?'\nProfitto garantito: '+fe(Math.min(pAw,pBw))+' ('+sbPct.toFixed(2)+'%)':'')+(isMiddle?'\nMiddle rilevato':'')+(flags.length?'\n\nFLAG:\n'+flags.join('\n'):'');
+}
+
+
+function toggleInfo(id){
+  var b=gi(id);
+  if(!b)return;
+  b.classList.toggle('open');
+}
+
+// INIT
+setCovMode('pb');
+updateFBUI();
+setCasMode('rou');
+fspInit();
+
+// ─────────────────────────────────────────
+// KEYBOARD / SCROLL FIX
+// Quando un input riceve focus, scrolla la pagina
+// in modo che il campo sia visibile sopra la tastiera.
+// ─────────────────────────────────────────
+(function(){
+  var KH=0; // altezza tastiera stimata
+
+  // Visual Viewport API — supportata da Chrome/Safari moderni
+  if(window.visualViewport){
+    window.visualViewport.addEventListener('resize',function(){
+      var vv=window.visualViewport;
+      var hidden=window.innerHeight-vv.height;
+      KH=hidden>50?hidden:0;
+      scrollActiveIntoView();
+    });
+  }
+
+  function scrollActiveIntoView(){
+    var el=document.activeElement;
+    if(!el||!['INPUT','SELECT','TEXTAREA'].includes(el.tagName))return;
+    // Calcola posizione del campo
+    var rect=el.getBoundingClientRect();
+    var vvHeight=window.visualViewport?window.visualViewport.height:window.innerHeight;
+    // Margine sopra la tastiera (quanto spazio vogliamo sotto il campo)
+    var margin=16;
+    var bottom=rect.bottom+margin;
+    if(bottom>vvHeight){
+      var scrollBy=bottom-vvHeight;
+      window.scrollBy({top:scrollBy,behavior:'smooth'});
+    }
+  }
+
+  // Focus su qualsiasi input → scrolla
+  document.addEventListener('focusin',function(e){
+    if(['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName)){
+      // Piccolo delay per aspettare che la tastiera si apra
+      setTimeout(scrollActiveIntoView,350);
+    }
+  },true);
+})();
+</script>
+</body>
+</html>
